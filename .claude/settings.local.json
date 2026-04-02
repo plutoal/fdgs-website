@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls c:/Users/generic/Documents/Builds/FGDS/*.mjs)",
+      "Bash(node serve.mjs)"
+    ]
+  }
+}

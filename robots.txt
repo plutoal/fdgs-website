@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Block internal/API routes
+Disallow: /api/
+Disallow: /thank-you.html
+
+Sitemap: https://your-domain.com/sitemap.xml

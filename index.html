@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FDGS — Frozen Garage Door Solutions</title>
+  <meta name="description" content="Premium OHD garage door parts, opener kits, spring systems and accessories. Shop Frozen Garage Door Solutions — no account required.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { DEFAULT: '#2695c8', dark: '#1a6d96', light: '#e8f4fb' },
+            ink:   '#1a1a1a',
+            muted: '#6b7280',
+            base:  '#f8f8f8',
+          },
+          fontFamily: {
+            display: ['"Barlow Condensed"', 'sans-serif'],
+            sans:    ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+
+<body>
+  <div id="toast-root" role="alert" aria-live="assertive"></div>
+  <div id="cart-root"></div>
+  <div id="search-root"></div>
+  <div id="header-root"></div>
+  <div id="hero-root"></div>
+  <main id="main-root"></main>
+  <footer id="footer-root"></footer>
+
+  <script type="module" src="js/pages/shop.js"></script>
+</body>
+</html>
