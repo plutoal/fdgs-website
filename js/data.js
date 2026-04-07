@@ -8,7 +8,7 @@ export const PRODUCTS = [
     stock: 12,
     desc: 'The 8ft Aluminium Kit is the best option for a Single-Car Garage. Easy to install permanent solution ',
     specs: { 'Drive Type': 'Chain Drive', 'Motor': '1/2 HP', 'Max Door Weight': '300 lbs', 'Warranty': '3 Years' },
-    img: 'https://placehold.co/360x480/dbeafe/1d4ed8?text=OHD+8ft+Antifreeze',
+    img: 'img/products/XZFIW4LROAICRCVT2EKXUN5M.webp',
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ export const PRODUCTS = [
     stock: 3,
     desc: 'Upgrade your garage with smart connectivity. Belt-drive quiet operation pairs with built-in WiFi for full smartphone control. Monitor and operate your door from anywhere via the OHD Connect app.',
     specs: { 'Drive Type': 'Belt Drive', 'Motor': '3/4 HP', 'Connectivity': 'WiFi + App', 'Warranty': '5 Years' },
-    img: 'https://placehold.co/480x480/dbeafe/1d4ed8?text=OHD+9ft+Antifreeze',
+    img: 'img/products/XZFIW4LROAICRCVT2EKXUN5M.webp',
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ export const PRODUCTS = [
     stock: 8,
     desc: 'Heavy-gauge galvanized extension springs engineered for long cycle life on residential doors. Sold as a matched pair for balanced operation. Compatible with standard one-piece and sectional door systems.',
     specs: { 'Type': 'Extension Spring', 'Lift Capacity': 'Up to 160 lbs', 'Cycle Life': '25,000 cycles', 'Finish': 'Galvanized' },
-    img: 'https://placehold.co/480x320/dcfce7/15803d?text=OHD+10ft+Antifreeze',
+    img: 'img/products/10.webp',
   },
   {
     id: 4,
@@ -41,7 +41,7 @@ export const PRODUCTS = [
     stock: 0,
     desc: 'OEM-compatible infrared photo-eye sensors that prevent the door from closing when the beam is broken. Direct plug-and-play replacement for most OHD opener models manufactured after 2005.',
     specs: { 'Range': 'Up to 20 ft', 'Beam Type': 'Infrared', 'Compatibility': 'Most OHD Models', 'Install': '15 min' },
-    img: 'https://placehold.co/480x320/fee2e2/b91c1c?text=OHD+12ft+Antifreeze',
+    img: 'img/products/12.webp',
   },
   {
     id: 5,
@@ -52,7 +52,7 @@ export const PRODUCTS = [
     stock: 15,
     desc: 'Add smart home connectivity to your existing OHD opener without replacing it. The Bridge Module plugs directly into the accessory port of 400+ series units for instant app control and status alerts.',
     specs: { 'Compatibility': 'OHD 400+ Series', 'Connection': '2.4 GHz WiFi', 'App': 'OHD Connect', 'Install': 'Plug & Play' },
-    img: 'https://placehold.co/480x320/fef9c3/854d0e?text=OHD+16ft+Antifreeze',
+    img: 'img/products/16.webp',
   },
   {
     id: 6,
@@ -63,7 +63,7 @@ export const PRODUCTS = [
     stock: 2,
     desc: 'Commercial-grade torsion spring kit for heavy residential and light commercial applications. Powder-coated aircraft-grade steel with precision winding for consistent door balance over the full rated cycle life.',
     specs: { 'Type': 'Torsion Spring', 'Lift Capacity': 'Up to 400 lbs', 'Cycle Life': '30,000 cycles', 'Wire Gauge': '0.250"' },
-    img: 'https://placehold.co/480x320/dcfce7/15803d?text=OHD+18ft+Antifreeze',
+    img: 'img/products/18.webp',
   },
   {
     id: 7,
@@ -74,7 +74,7 @@ export const PRODUCTS = [
     stock: 12,
     desc: 'The 8ft Aluminium Kit is the best option for a Single-Car Garage. Easy to install permanent solution ',
     specs: { 'Drive Type': 'Chain Drive', 'Motor': '1/2 HP', 'Max Door Weight': '300 lbs', 'Warranty': '3 Years' },
-    img: 'https://placehold.co/360x480/dbeafe/1d4ed8?text=OHD+20ft+Antifreeze',
+    img: 'img/products/20.webp',
   }
 ];
 
