@@ -4,7 +4,7 @@ const DOMAIN = process.env.SHOPIFY_STORE_DOMAIN;
 const TOKEN  = process.env.SHOPIFY_STOREFRONT_TOKEN;
 
 export function shopifyConfigured() {
-  return TOKEN &&
+  return DOMAIN && TOKEN &&
     !TOKEN.startsWith('YOUR_') &&
     !TOKEN.endsWith('Shopify-Storefront-Access-Token');
 }
