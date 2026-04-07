@@ -29,5 +29,4 @@ export const GOOGLE_PLACE_ID = "YOUR_GOOGLE_PLACE_ID"; // e.g. ChIJN1t_tDeuEmsRU
  */
 export const SHOPIFY_STORE_DOMAIN =
   "frozen-garage-door-solutions-ltd.myshopify.com";
-export const SHOPIFY_STOREFRONT_TOKEN =
-  "6eb0b320ada355b9a0cb54550febaa886eb0b320ada355b9a0cb54550febaa88-Shopify-Storefront-Access-Token";
+export const SHOPIFY_STOREFRONT_TOKEN = "6eb0b320ada355b9a0cb54550febaa88";

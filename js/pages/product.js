@@ -1,4 +1,5 @@
-import { PRODUCTS } from "../data.js";
+import { loadProducts, getProducts } from "../products.js";
+import { redirectToCheckout } from "../checkout.js";
 import { Cart } from "../cart.js";
 import { showToast } from "../toast.js";
 import { HeaderHTML, updateBadge, initHeader } from "../components/header.js";
@@ -21,27 +22,29 @@ document.getElementById("header-root").innerHTML = HeaderHTML({
 });
 document.getElementById("footer-root").innerHTML = FooterHTML();
 
-// ── LOAD PRODUCT ─────────────────────────────────────────
-const params = new URLSearchParams(window.location.search);
-const p = PRODUCTS.find((x) => x.id === parseInt(params.get("id")));
+(async () => {
+  // ── LOAD PRODUCT ─────────────────────────────────────────
+  await loadProducts();
+  const params = new URLSearchParams(window.location.search);
+  const p = getProducts().find((x) => x.id === parseInt(params.get("id")));
 
-if (!p) {
-  document.getElementById("main-root").innerHTML = `
+  if (!p) {
+    document.getElementById("main-root").innerHTML = `
     <div style="min-height:60vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 24px;">
       <h1 class="font-display font-bold" style="font-size:2.5rem;margin-bottom:12px;">Product Not Found</h1>
       <p style="color:#6b7280;margin-bottom:24px;">This product doesn't exist or has been removed.</p>
       <a href="index.html" class="btn btn-primary">Back to Shop</a>
     </div>`;
-  document.title = "Not Found — FDGS";
-} else {
-  document.title = `${p.name} — FDGS Garage Parts`;
+    document.title = "Not Found — FDGS";
+  } else {
+    document.title = `${p.name} — FDGS Garage Parts`;
 
-  const isLow = p.stock > 0 && p.stock <= 5;
-  const isOut = p.stock === 0;
-  const isSale = !!(p.compareAt && p.compareAt > p.price);
-  const disc = isSale ? Math.round((1 - p.price / p.compareAt) * 100) : 0;
+    const isLow = p.stock > 0 && p.stock <= 5;
+    const isOut = false; // STOCK CHECK DISABLED — restore: p.stock === 0
+    const isSale = !!(p.compareAt && p.compareAt > p.price);
+    const disc = isSale ? Math.round((1 - p.price / p.compareAt) * 100) : 0;
 
-  document.getElementById("main-root").innerHTML = `
+    document.getElementById("main-root").innerHTML = `
     <div style="max-width:1280px;margin:0 auto;padding:32px 24px 80px;">
 
       <!-- Breadcrumb -->
@@ -120,118 +123,118 @@ if (!p) {
       </div>
     </div>`;
 
-  renderCTA();
-  initStickyCTA();
-}
+    renderCTA();
+    initStickyCTA();
+  }
 
-// ── CTA RENDERING ────────────────────────────────────────
-function ctaHTML() {
-  if (!p) return "";
-  const qty = Cart.qty(p.id);
-  if (p.stock === 0) {
-    return `<button class="btn" style="padding:14px 32px;font-size:1rem;border-radius:12px;flex:1;" disabled>Out of Stock</button>
-            <span style="font-size:0.8rem;color:#9ca3af;">Check back soon</span>`;
-  }
-  if (qty > 0) {
-    return `${InlineQtyControl({ id: p.id, qty }).replace('class="qty-inline"', 'class="qty-inline" style="min-width:180px;flex:1;"')}
+  // ── CTA RENDERING ────────────────────────────────────────
+  function ctaHTML() {
+    if (!p) return "";
+    const qty = Cart.qty(p.id);
+    // STOCK CHECK DISABLED —uncomment when inventory is live
+    // if (p.stock === 0) {
+    //   return `<button class="btn" ... disabled>Out of Stock</button>
+    //           <span ...>Check back soon</span>`;
+    // }
+    if (qty > 0) {
+      return `${InlineQtyControl({ id: p.id, qty }).replace('class="qty-inline"', 'class="qty-inline" style="min-width:180px;flex:1;"')}
             <button id="view-cart-btn" class="btn" style="padding:14px 24px;font-size:1rem;border-radius:12px;border:1.5px solid #2695c8;color:#2695c8;background:transparent;font-weight:600;transition:background .15s;white-space:nowrap;" onmouseover="this.style.background='#e8f4fb'" onmouseout="this.style.background='transparent'">View Cart</button>`;
-  }
-  return `<button id="add-to-cart-btn" class="btn btn-primary" style="padding:14px 40px;font-size:1rem;border-radius:12px;flex:1;">
+    }
+    return `<button id="add-to-cart-btn" class="btn btn-primary" style="padding:14px 40px;font-size:1rem;border-radius:12px;flex:1;">
             Add to Cart
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
           </button>`;
-}
-
-function bindCTAButtons(root) {
-  root.querySelectorAll("#add-to-cart-btn").forEach((btn) =>
-    btn.addEventListener("click", () => {
-      Cart.add(p.id);
-      showToast("✓ Added to cart");
-      updateBadge(true);
-    }),
-  );
-  root.querySelectorAll("#view-cart-btn").forEach((btn) =>
-    btn.addEventListener("click", () => {
-      refreshCartDrawer(PRODUCTS);
-      openCartDrawer();
-    }),
-  );
-  root
-    .querySelectorAll('[data-action="dec-card"]')
-    .forEach((btn) => btn.addEventListener("click", () => Cart.dec(p.id)));
-  root
-    .querySelectorAll('[data-action="inc-card"]')
-    .forEach((btn) =>
-      btn.addEventListener("click", () => Cart.inc(p.id, p.stock)),
-    );
-}
-
-function renderCTA() {
-  const el = document.getElementById("prod-cta");
-  const stick = document.getElementById("sticky-cta-bar");
-  if (!el || !p) return;
-
-  const html = ctaHTML();
-  el.innerHTML = html;
-  if (stick) stick.innerHTML = html;
-
-  bindCTAButtons(el);
-  if (stick) bindCTAButtons(stick);
-}
-
-// ── STICKY BOTTOM CTA (mobile only) ─────────────────────
-function initStickyCTA() {
-  if (!p) return;
-
-  // Inject the bar into the page (after main-root)
-  const bar = document.createElement("div");
-  bar.id = "sticky-cta-bar";
-  document.body.appendChild(bar);
-  document.body.classList.add("has-sticky-cta");
-
-  // Use IntersectionObserver to show/hide based on main CTA visibility
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      bar.classList.toggle("visible", !entry.isIntersecting);
-    },
-    { threshold: 0, rootMargin: "0px 0px -20px 0px" },
-  );
-
-  // Observe the main CTA div once it exists
-  const mainCTA = document.getElementById("prod-cta");
-  if (mainCTA) observer.observe(mainCTA);
-
-  renderCTA(); // populate sticky bar
-}
-
-// ── INIT ─────────────────────────────────────────────────
-initHeader({
-  onCartOpen() {
-    refreshCartDrawer(PRODUCTS);
-    openCartDrawer();
-  },
-});
-
-initCartDrawer({
-  products: PRODUCTS,
-  onCheckout() {
-    showToast("Redirecting to checkout…");
-    setTimeout(() => {
-      window.location.href = "thank-you.html?order_id=DEMO-" + Date.now();
-    }, 600);
-  },
-});
-
-Cart.onChange(() => {
-  updateBadge();
-  renderCTA();
-  if (document.getElementById("cart-drawer")?.classList.contains("open")) {
-    refreshCartDrawer(PRODUCTS);
   }
-});
 
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeCartDrawer();
-});
+  function bindCTAButtons(root) {
+    root.querySelectorAll("#add-to-cart-btn").forEach((btn) =>
+      btn.addEventListener("click", () => {
+        Cart.add(p.id);
+        showToast("✓ Added to cart");
+        updateBadge(true);
+      }),
+    );
+    root.querySelectorAll("#view-cart-btn").forEach((btn) =>
+      btn.addEventListener("click", () => {
+        refreshCartDrawer(getProducts());
+        openCartDrawer();
+      }),
+    );
+    root
+      .querySelectorAll('[data-action="dec-card"]')
+      .forEach((btn) => btn.addEventListener("click", () => Cart.dec(p.id)));
+    root
+      .querySelectorAll('[data-action="inc-card"]')
+      .forEach((btn) =>
+        btn.addEventListener("click", () => Cart.inc(p.id, p.stock)),
+      );
+  }
 
-updateBadge();
+  function renderCTA() {
+    const el = document.getElementById("prod-cta");
+    const stick = document.getElementById("sticky-cta-bar");
+    if (!el || !p) return;
+
+    const html = ctaHTML();
+    el.innerHTML = html;
+    if (stick) stick.innerHTML = html;
+
+    bindCTAButtons(el);
+    if (stick) bindCTAButtons(stick);
+  }
+
+  // ── STICKY BOTTOM CTA (mobile only) ─────────────────────
+  function initStickyCTA() {
+    if (!p) return;
+
+    // Inject the bar into the page (after main-root)
+    const bar = document.createElement("div");
+    bar.id = "sticky-cta-bar";
+    document.body.appendChild(bar);
+    document.body.classList.add("has-sticky-cta");
+
+    // Use IntersectionObserver to show/hide based on main CTA visibility
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        bar.classList.toggle("visible", !entry.isIntersecting);
+      },
+      { threshold: 0, rootMargin: "0px 0px -20px 0px" },
+    );
+
+    // Observe the main CTA div once it exists
+    const mainCTA = document.getElementById("prod-cta");
+    if (mainCTA) observer.observe(mainCTA);
+
+    renderCTA(); // populate sticky bar
+  }
+
+  // ── INIT ─────────────────────────────────────────────────
+  initHeader({
+    onCartOpen() {
+      refreshCartDrawer(getProducts());
+      openCartDrawer();
+    },
+  });
+
+  initCartDrawer({
+    products: getProducts(),
+    async onCheckout() {
+      showToast("Redirecting to checkout…");
+      await redirectToCheckout({ onError: (msg) => showToast(`⚠ ${msg}`) });
+    },
+  });
+
+  Cart.onChange(() => {
+    updateBadge();
+    renderCTA();
+    if (document.getElementById("cart-drawer")?.classList.contains("open")) {
+      refreshCartDrawer(getProducts());
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeCartDrawer();
+  });
+
+  updateBadge();
+})();
