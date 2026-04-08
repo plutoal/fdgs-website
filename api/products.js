@@ -1,5 +1,5 @@
 // api/products.js — GET /api/products
-import { shopifyConfigured, shopifyGQL, jsonResponse } from './shopify-helpers.js';
+import { shopifyConfigured, shopifyGQL, jsonResponse } from '../lib/shopify-helpers.js';
 
 export default async function handler() {
   if (!shopifyConfigured()) {

@@ -1,5 +1,5 @@
 // api/google-reviews.js — GET /api/google-reviews
-import { jsonResponse } from './shopify-helpers.js';
+import { jsonResponse } from '../lib/shopify-helpers.js';
 
 const API_KEY  = process.env.GOOGLE_PLACES_API_KEY;
 const PLACE_ID = process.env.GOOGLE_PLACE_ID;
