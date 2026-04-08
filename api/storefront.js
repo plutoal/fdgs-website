@@ -1,5 +1,5 @@
 // api/storefront.js — POST /api/storefront (cart mutation proxy)
-import { shopifyConfigured, shopifyGQL, jsonResponse } from './_shopify.js';
+import { shopifyConfigured, shopifyGQL, jsonResponse } from './shopify-helpers.js';
 
 export default async function handler(req) {
   if (req.method === 'OPTIONS') {

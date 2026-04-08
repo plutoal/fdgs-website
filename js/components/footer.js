@@ -1,26 +1,30 @@
 export function FooterHTML() {
   const shopLinks = [
-    { label: 'Opener Kits',     href: 'index.html#catalog' },
-    { label: 'Spring Systems',  href: 'index.html#catalog' },
-    { label: 'Safety Sensors',  href: 'index.html#catalog' },
-    { label: 'Accessories',     href: 'index.html#catalog' },
-    { label: 'All Products',    href: 'index.html#catalog' },
+    { label: "OHD Kits", href: "index.html#catalog" },
+    // { label: 'Spring Systems',  href: 'index.html#catalog' },
+    // { label: 'Safety Sensors',  href: 'index.html#catalog' },
+    // { label: 'Accessories',     href: 'index.html#catalog' },
+    { label: "All Products", href: "index.html#catalog" },
   ];
   const helpLinks = [
-    { label: 'Shipping Info',       href: 'shipping-policy.html' },
-    { label: 'Returns & Refunds',   href: 'returns-policy.html' },
-    { label: 'Installation Guides', href: 'instructions.html' },
-    { label: 'Contact Us',          href: '#' },
-    { label: 'Reviews',             href: 'testimonials.html' },
-    { label: 'Sign In / Register',  href: '#' },
+    { label: "Shipping Info", href: "shipping-policy.html" },
+    { label: "Returns & Refunds", href: "returns-policy.html" },
+    { label: "Installation Guides", href: "instructions.html" },
+    { label: "Contact Us", href: "#" },
+    { label: "Reviews", href: "testimonials.html" },
+    { label: "Sign In / Register", href: "#" },
   ];
 
-  const navList = (links) => links.map(({ label, href }) =>
-    `<li style="margin-bottom:10px;">
+  const navList = (links) =>
+    links
+      .map(
+        ({ label, href }) =>
+          `<li style="margin-bottom:10px;">
       <a href="${href}" style="color:rgba(255,255,255,0.55);font-size:0.875rem;text-decoration:none;transition:color 0.15s;"
          onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">${label}</a>
-    </li>`
-  ).join('');
+    </li>`,
+      )
+      .join("");
 
   return `
     <footer style="background:#111;color:#fff;padding:64px 24px 40px;">
