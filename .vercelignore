@@ -1,0 +1,7 @@
+node_modules
+api.config.mjs
+serve.mjs
+screenshot.mjs
+docs
+temporary screenshots
+*.csv
