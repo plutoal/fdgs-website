@@ -1,7 +1,7 @@
 // api/products.js — GET /api/products
-import { shopifyConfigured, shopifyGQL, jsonResponse } from './_shopify.js';
+import { shopifyConfigured, shopifyGQL, jsonResponse } from './shopify-helpers.js';
 
-export default async function handler(req) {
+export default async function handler() {
   if (!shopifyConfigured()) {
     return jsonResponse({ configured: false, products: [] });
   }

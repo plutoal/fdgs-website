@@ -1,7 +1,8 @@
 {
   "functions": {
-    "api/*.js": {
-      "runtime": "nodejs20.x"
-    }
+    "api/products.js":       { "runtime": "nodejs20.x" },
+    "api/storefront.js":     { "runtime": "nodejs20.x" },
+    "api/google-reviews.js": { "runtime": "nodejs20.x" },
+    "api/metareviews.js":    { "runtime": "nodejs20.x" }
   }
 }
