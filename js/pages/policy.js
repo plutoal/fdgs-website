@@ -15,67 +15,38 @@ import { PRODUCTS } from "../data.js";
 const POLICIES = {
   shipping: {
     title: "Shipping Policy",
-    lastUpdated: "March 2026",
+    lastUpdated: null,
     sections: [
       {
-        heading: "Processing Time",
-        body: `All in-stock orders are processed within 1–2 business days (Monday–Friday, excluding federal holidays). Orders placed after 2:00 PM EST will begin processing the next business day. You will receive a shipping confirmation email with tracking information once your order has shipped.`,
+        heading: "",
+        body: `All orders are processed within 4 to 6 weeks (excluding weekends and holidays) after receiving your order confirmation email. You will receive another notification when your order has shipped.\nDue to higher demand than expected, shipping times may vary.`,
       },
       {
-        heading: "Shipping Methods & Rates",
-        body: `We ship across the continental United States via UPS and FedEx Ground. Shipping rates are calculated at checkout based on order weight and delivery destination.\n\n**Free Standard Shipping** is available on all orders over $200.00 (before taxes). This threshold is automatically applied at checkout — no coupon code required.`,
-        table: {
-          headers: ["Method", "Estimated Transit", "Rate"],
-          rows: [
-            ["Standard Ground", "5–7 business days", "Calculated at checkout"],
-            ["Expedited (2-Day)", "2 business days", "Calculated at checkout"],
-            ["Overnight", "1 business day", "Calculated at checkout"],
-            ["Free Standard", "5–7 business days", "Free on orders $200+"],
-          ],
-        },
+        heading: "",
+        body: `Frozen Garage Door Solutions can ship our kits to any location in Canada serviced by an approved carrier.`,
       },
       {
-        heading: "Order Tracking",
-        body: `Once your order ships, you will receive an automated email containing your carrier and tracking number. You can track your shipment directly on the carrier's website. If you have not received a tracking email within 3 business days of placing your order, please contact us.`,
+        heading: "",
+        body: `When your order has shipped, you will receive an email notification from us which will include a tracking number you can use to check its status. Please allow 48 hours for the tracking information to become available.`,
       },
       {
-        heading: "Shipping Restrictions",
-        body: `We currently ship to the 48 contiguous United States only. We do not ship to Alaska, Hawaii, US territories, APO/FPO addresses, or internationally at this time. Large or heavy items (such as full spring system kits) may be subject to freight shipping — you will be notified prior to fulfillment if this applies to your order.`,
-      },
-      {
-        heading: "Damaged or Lost Shipments",
-        body: `If your order arrives damaged, please photograph the packaging and contents immediately and contact us within 48 hours of delivery. We will file a carrier claim on your behalf and arrange a replacement or refund at no cost to you. For lost shipments (tracking shows no movement for 5+ business days), contact us and we will investigate with the carrier.`,
+        heading: "",
+        body: `If you haven't received your order within 10 days of receiving your shipping confirmation email, please contact us at <a href="mailto:info@frozengaragedoorsolutions.com" style="color:#2695c8;text-decoration:underline;">info@frozengaragedoorsolutions.com</a> with your name and order number, and we will look into it for you.`,
       },
     ],
   },
 
   returns: {
-    title: "Return & Refund Policy",
-    lastUpdated: "March 2026",
+    title: "Return Policy",
+    lastUpdated: null,
     sections: [
       {
-        heading: "Return Window",
-        body: `We accept returns on most items within **30 days** of the delivery date. Items must be in their original, unused condition with all original packaging and hardware included. Returns initiated after 30 days will not be accepted.`,
+        heading: "",
+        body: `The customer must contact Frozen Garage Door Solutions before any returns. Frozen Garage Door Solutions accepts returns of our product for a period of 60 days. It must be returned in the original packaging and with proof of purchase. The refund will be made to the original credit card that was used to purchase the kit. The customer is responsible for the cost of returning our product, it will be deducted from the refund. In the event that your order arrives damaged in any way, please email us as soon as possible at <a href="mailto:info@frozengaragedoorsolutions.com" style="color:#2695c8;text-decoration:underline;">info@frozengaragedoorsolutions.com</a> with your order number and a photo of the item's condition. We address these on a case-by-case basis but will try our best to work towards a satisfactory solution.`,
       },
       {
-        heading: "Eligible Items",
-        body: `The following items are eligible for return:\n\n- Unopened opener kits and spring system packages\n- Accessories in original sealed packaging\n- Safety sensors that have not been installed or wired\n\nThe following items are **not eligible** for return:\n\n- Items that have been installed, modified, or show signs of use\n- Custom-cut springs or custom-order components\n- Electrical components that have been wired or powered on\n- Items damaged by improper installation`,
-      },
-      {
-        heading: "How to Initiate a Return",
-        body: `To start a return, contact our support team at support@frozengaragedoors.com with your order number and reason for return. We will provide a Return Merchandise Authorization (RMA) number and prepaid return shipping label within 1–2 business days. Do not ship items back without an RMA number — unauthorized returns will be refused.`,
-      },
-      {
-        heading: "Refund Processing",
-        body: `Once we receive and inspect your return, we will notify you of the approval or rejection of your refund within 3 business days. Approved refunds are issued to your original payment method within 5–7 business days. Original shipping charges are non-refundable unless the return is due to our error (wrong item, defective product).`,
-      },
-      {
-        heading: "Exchanges",
-        body: `We do not process direct exchanges. If you need a different item, initiate a return for the original item and place a new order. This ensures the fastest possible turnaround for your replacement part.`,
-      },
-      {
-        heading: "Defective or Incorrect Items",
-        body: `If you received a defective item or an incorrect product, contact us immediately. We will arrange a prepaid return and ship the correct or replacement item at no additional charge. Defective items are covered under the manufacturer's warranty — terms vary by product and are included in the product documentation.`,
+        heading: "",
+        body: `If you have any further questions, please don't hesitate to contact us at <a href="mailto:info@frozengaragedoorsolutions.com" style="color:#2695c8;text-decoration:underline;">info@frozengaragedoorsolutions.com</a>`,
       },
     ],
   },
@@ -120,48 +91,48 @@ const POLICIES = {
   },
 
   terms: {
-    title: "Terms of Service",
-    lastUpdated: "March 2026",
+    title: "Terms of Use",
+    lastUpdated: "2022",
     sections: [
       {
-        heading: "1. Acceptance of Terms",
-        body: `By accessing or using the FDGS Garage Parts Store website (the "Site"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the Site. These terms apply to all visitors, customers, and users of the Site.`,
+        heading: "ACCEPTANCE OF TERMS",
+        body: `By using the Website, You accept and agree to be bound by these Terms of Use (the "Terms") and all applicable laws and regulations. Please read these Terms carefully before using the Website. By accessing or using the Website, You agree to be bound by these Terms. If You do not agree with any of these Terms, You are prohibited from accessing or using the Website or any content on or through the Website.\n\nThe Company may revise these Terms at any time without notice. By accessing or using the Website, You agree to be bound by the then-current version of these Terms. These Terms together with the Company's Privacy Policy represent the entire agreement between You and the Company with respect to Your use of the Website and supersede all prior or contemporaneous communications and proposals, whether electronic, oral, or written, between You and the Company with respect to the Website.`,
       },
       {
-        heading: "2. Use of the Site",
-        body: `You agree to use the Site only for lawful purposes and in accordance with these Terms. You must not use the Site to engage in any fraudulent, abusive, or harmful conduct; attempt to gain unauthorized access to any part of the Site; transmit viruses or any other malicious code; or violate any applicable local, national, or international laws.`,
+        heading: "IS YOUR USE OF OUR WEBSITE RESTRICTED?",
+        body: `You must be of the age of majority in Your jurisdiction of residence to use the Website. By using the Website, You represent and warrant that You are of the age of majority in Your jurisdiction of residence and that You have the right, authority, and capacity to agree to and comply with these Terms.\n\nYou are not permitted to access or use the Website if You are located in, or a resident of, any jurisdiction where the provision of the Website, the products, services, content, or other materials of the Website would be contrary to applicable law or regulation, or where the Company would be required to register or obtain a license. It is Your responsibility to determine whether Your access to or use of the Website is lawful in Your jurisdiction.`,
       },
       {
-        heading: "3. Product Information",
-        body: `We make every effort to display product information, specifications, and pricing accurately. However, we reserve the right to correct errors or update information at any time without prior notice. Product images are for illustrative purposes and may differ slightly from the actual product. Compatibility information is provided as a guide — always verify fitment before ordering.`,
+        heading: "YOUR USE OF THIS WEBSITE",
+        body: `You agree to use the Website only for lawful purposes and in a manner consistent with all applicable laws and regulations. You must not use the Website:\n\n- In any way that violates any applicable local, national, or international law or regulation;\n- To transmit, or procure the sending of, any unsolicited or unauthorized advertising or promotional material or any other form of similar solicitation;\n- To transmit any data, send or upload any material that contains viruses, Trojan horses, worms, time-bombs, keystroke loggers, spyware, adware, or any other harmful programs or similar computer code designed to adversely affect the operation of any computer software or hardware;\n- To access without authority, interfere with, damage, or disrupt any part of the Website, any equipment or network on which the Website is stored, any software used in the provision of the Website, or any equipment or network or software owned or used by any third party;\n- To reproduce, duplicate, copy, or re-sell any part of the Website in contravention of these Terms;\n- To engage in any conduct that restricts or inhibits anyone's use or enjoyment of the Website, or which, as determined by the Company, may harm the Company or users of the Website, or expose them to liability.\n\nThe Company reserves the right, at its sole discretion, to restrict or terminate Your access to and use of the Website or any feature or part thereof, at any time without notice, for any reason, including, without limitation, for violation of these Terms.`,
       },
       {
-        heading: "4. Pricing and Payment",
-        body: `All prices are listed in US Dollars and are subject to change without notice. Applicable sales tax will be calculated and added at checkout based on your delivery address. We accept major credit cards, debit cards, and other payment methods as displayed at checkout. Payment is processed securely through Shopify's managed payment infrastructure.`,
+        heading: "INTELLECTUAL PROPERTY",
+        body: `The Website and all of its content, features, and functionality (including but not limited to all information, software, text, displays, images, video, and audio, and the design, selection, and arrangement thereof) are owned by the Company, its licensors, or other providers of such material and are protected by Canadian and international copyright, trademark, patent, trade secret, and other intellectual property or proprietary rights laws.\n\nThese Terms permit You to use the Website for Your personal, non-commercial use only. You must not reproduce, distribute, modify, create derivative works of, publicly display, publicly perform, republish, download, store, or transmit any of the material on the Website without the prior written consent of the Company, except as follows:\n\n- Your computer may temporarily store copies of such materials in RAM incidental to Your accessing and viewing those materials;\n- You may store files that are automatically cached by Your Web browser for display enhancement purposes;\n- You may print or download one copy of a reasonable number of pages of the Website for Your own personal, non-commercial use and not for further reproduction, publication, or distribution.\n\nIf You print, copy, modify, download, or otherwise use or provide any other person with access to any part of the Website in breach of these Terms, Your right to use the Website will stop immediately and You must, at the Company's option, return or destroy any copies of the materials You have made.`,
       },
       {
-        heading: "5. Order Acceptance",
-        body: `Placing an order constitutes an offer to purchase. We reserve the right to accept, decline, or cancel any order for any reason, including product unavailability, pricing errors, or suspected fraud. If we cancel an order after payment has been processed, a full refund will be issued to your original payment method.`,
+        heading: "DISCLAIMER",
+        body: `The Website is provided on an "as is" and "as available" basis, without any warranties of any kind, either express or implied. Neither the Company nor any person associated with the Company makes any warranty or representation with respect to the completeness, security, reliability, quality, accuracy, or availability of the Website.\n\nThe Company hereby disclaims all warranties of any kind, whether express or implied, statutory, or otherwise, including but not limited to any warranties of merchantability, non-infringement, and fitness for particular purpose.\n\nThe foregoing does not affect any warranties that cannot be excluded or limited under applicable law.`,
       },
       {
-        heading: "6. Intellectual Property",
-        body: `All content on the Site — including text, images, logos, graphics, and software — is the property of Frozen Garage Door Solutions or its licensors and is protected by applicable intellectual property laws. You may not reproduce, distribute, or create derivative works from any Site content without our express written permission.`,
+        heading: "LIMITATION OF LIABILITY",
+        body: `To the fullest extent provided by law, in no event will the Company, its affiliates, or their licensors, service providers, employees, agents, officers, or directors be liable for damages of any kind, under any legal theory, arising out of or in connection with Your use, or inability to use, the Website, any websites linked to it, any content on the Website or such other websites, including any direct, indirect, special, incidental, consequential, or punitive damages, including but not limited to, personal injury, pain and suffering, emotional distress, loss of revenue, loss of profits, loss of business or anticipated savings, loss of use, loss of goodwill, loss of data, and whether caused by tort (including negligence), breach of contract, or otherwise, even if foreseeable.\n\nThe foregoing does not affect any liability which cannot be excluded or limited under applicable law.`,
       },
       {
-        heading: "7. Limitation of Liability",
-        body: `To the fullest extent permitted by law, Frozen Garage Door Solutions shall not be liable for any indirect, incidental, special, or consequential damages arising from the use of, or inability to use, the Site or products purchased through it. Our total liability in connection with any claim shall not exceed the amount paid for the product giving rise to the claim.`,
+        heading: "INDEMNIFICATION AND THIRD PARTY CLAIMS",
+        body: `You agree to defend, indemnify, and hold harmless the Company, its affiliates, licensors, and service providers, and its and their respective officers, directors, employees, contractors, agents, licensors, suppliers, successors, and assigns from and against any claims, liabilities, damages, judgments, awards, losses, costs, expenses, or fees (including reasonable legal fees) arising out of or relating to Your violation of these Terms or Your use of the Website, including, but not limited to, any use of the Website's content, services, and products other than as expressly authorized in these Terms, or Your use of any information obtained from the Website.\n\nIf You have a dispute with any other user of the Website, or with any third party linked to or from the Website, the Company is under no obligation to become involved.`,
       },
       {
-        heading: "8. Governing Law",
-        body: `These Terms of Service are governed by the laws of the State of Delaware, without regard to its conflict of law provisions. Any disputes arising from these Terms shall be subject to the exclusive jurisdiction of the courts located in Delaware.`,
+        heading: "THIRD PARTY LINKS",
+        body: `The Website may contain links to third-party websites or services that are not owned or controlled by the Company. The Company has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third-party websites or services. You further acknowledge and agree that the Company shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with the use of or reliance on any such content, goods, or services available on or through any such websites or services.\n\nWe strongly advise You to read the terms and conditions and privacy policies of any third-party websites or services that You visit. The inclusion of any link does not imply endorsement by the Company of the linked site.`,
       },
       {
-        heading: "9. Changes to Terms",
-        body: `We reserve the right to update these Terms of Service at any time. Changes will be posted on this page with an updated "Last Updated" date. Your continued use of the Site after any changes constitutes your acceptance of the new Terms.`,
+        heading: "GOVERNING LAW",
+        body: `These Terms and any dispute or claim arising out of, or related to, them, their subject matter, or their formation (in each case, including non-contractual disputes or claims) shall be governed by and construed in accordance with the laws of the Province of Ontario and the federal laws of Canada applicable therein, without giving effect to any choice or conflict of law provision or rule.\n\nAny legal suit, action, or proceeding arising out of, or related to, these Terms or the Website shall be instituted exclusively in the courts of the Province of Ontario, although we retain the right to bring any suit, action, or proceeding against You for breach of these Terms in Your country of residence or any other relevant country.`,
       },
       {
-        heading: "10. Contact",
-        body: `Questions about these Terms? Contact us at legal@frozengaragedoors.com or by mail at:\n\nFrozen Garage Door Solutions\nLegal Department\n[Business Address]\n[City, State ZIP]`,
+        heading: "ENTIRE AGREEMENT",
+        body: `These Terms, together with the Company's Privacy Policy and any other legal notices published by the Company on the Website, shall constitute the entire agreement between You and the Company concerning the Website and supersede all prior agreements, representations, warranties, and understandings with respect to the Website and the subject matter of these Terms.\n\nIf any provision of these Terms is found by a court of competent jurisdiction to be invalid, the parties nevertheless agree that the court should endeavour to give effect to the parties' intentions as reflected in the provision, and the other provisions of these Terms remain in full force and effect.\n\nThe Company's failure to exercise or enforce any right or provision of these Terms shall not constitute a waiver of such right or provision. If You have any questions about these Terms, please contact us.`,
       },
     ],
   },
@@ -221,7 +192,7 @@ if (!policy) {
 
     return `
       <section style="margin-bottom:40px;">
-        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:-0.01em;color:#1a1a1a;margin-bottom:12px;">${s.heading}</h2>
+        ${s.heading ? `<h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:-0.01em;color:#1a1a1a;margin-bottom:12px;">${s.heading}</h2>` : ''}
         <p style="font-size:0.92rem;line-height:1.75;color:#4b5563;">${body}</p>
         ${tableHTML}
       </section>`;
@@ -240,7 +211,7 @@ if (!policy) {
       <!-- Header -->
       <div style="margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid rgba(0,0,0,0.08);">
         <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,5vw,3rem);letter-spacing:-0.02em;color:#1a1a1a;margin-bottom:8px;">${policy.title}</h1>
-        <p style="font-size:0.82rem;color:#9ca3af;">Last updated: ${policy.lastUpdated}</p>
+        ${policy.lastUpdated ? `<p style="font-size:0.82rem;color:#9ca3af;">Last updated: ${policy.lastUpdated}</p>` : ''}
       </div>
 
       <!-- Sections -->
