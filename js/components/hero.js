@@ -13,7 +13,7 @@ export function HeroHTML() {
                       border:1px solid rgba(255,255,255,0.11);border-radius:100px;padding:6px 16px;
                       margin-bottom:32px;font-size:0.8rem;color:rgba(255,255,255,0.55);">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2695c8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 4v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-            Canada-wide Shipping
+            Free Canada-wide Shipping
           </div>
 
           <h1 class="hero-h1 font-display font-black">
@@ -53,23 +53,23 @@ export function HeroHTML() {
 export function initHero() {
   initParticles();
   setTimeout(() => {
-    document.getElementById('hero-inner')?.classList.add('hero-revealed');
+    document.getElementById("hero-inner")?.classList.add("hero-revealed");
   }, 2000);
 }
 
 function initParticles() {
-  const c = document.getElementById('particles');
+  const c = document.getElementById("particles");
   if (!c) return;
   for (let i = 0; i < 24; i++) {
-    const p = document.createElement('div');
-    p.className = 'fp';
-    const sz   = Math.random() * 3 + 1;
+    const p = document.createElement("div");
+    p.className = "fp";
+    const sz = Math.random() * 3 + 1;
     const blue = Math.random() > 0.4;
     p.style.cssText = `
       left:${Math.random() * 100}%;
       bottom:${Math.random() * 15}%;
       width:${sz}px; height:${sz}px;
-      background:${blue ? 'rgba(38,149,200,' : 'rgba(255,255,255,'}${(Math.random() * 0.4 + 0.15).toFixed(2)});
+      background:${blue ? "rgba(38,149,200," : "rgba(255,255,255,"}${(Math.random() * 0.4 + 0.15).toFixed(2)});
       animation-duration:${(Math.random() * 9 + 6).toFixed(1)}s;
       animation-delay:${(Math.random() * 10).toFixed(1)}s;`;
     c.appendChild(p);

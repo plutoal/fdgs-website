@@ -78,4 +78,4 @@ export const PRODUCTS = [
   }
 ];
 
-export const TYPES = ['All', 'OHD Kits', 'Spring Systems', 'Safety', 'Accessories'];
+export const TYPES = ['All', 'OHD Kits'];
