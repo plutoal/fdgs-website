@@ -59,7 +59,6 @@ module.exports = async function handler(req, res) {
   try {
     const data  = await shopifyPost(query);
     const nodes = data?.data?.products?.nodes || [];
-
     const products = nodes.map((p, i) => {
       const v          = p.variants.nodes[0] || {};
       const price      = parseFloat(v.price?.amount || p.priceRange.minVariantPrice.amount);
