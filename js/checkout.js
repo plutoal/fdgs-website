@@ -3,7 +3,7 @@
 
 import { Cart } from './cart.js';
 import { getProducts } from './products.js';
-import { cartCreate, getStoredCartId, setStoredCartId, cartLinesAdd } from './shopify.js';
+import { cartCreate, setStoredCartId } from './shopify.js';
 
 /**
  * Redirect to Shopify checkout.
@@ -16,14 +16,22 @@ export async function redirectToCheckout({ onError } = {}) {
   const cartItems = Cart.get();
   const products  = getProducts();
 
-  if (!cartItems.length) return;
+  if (!cartItems.length) {
+    onError?.('Your cart is empty.');
+    return;
+  }
 
   // Map localStorage items to Shopify { merchandiseId, quantity } lines
   const lines = cartItems.flatMap(item => {
     const p = products.find(x => x.id === item.id);
-    if (!p?.variantId) return [];
+    if (!p?.variantId) {
+      console.warn('[checkout] no variantId for cart item id:', item.id, p);
+      return [];
+    }
     return [{ merchandiseId: p.variantId, quantity: item.qty }];
   });
+
+  console.log('[checkout] lines to send:', lines);
 
   if (!lines.length) {
     onError?.('No valid products found. Please refresh and try again.');
@@ -32,6 +40,7 @@ export async function redirectToCheckout({ onError } = {}) {
 
   try {
     const result = await cartCreate(lines);
+    console.log('[checkout] cartCreate result:', result);
 
     if (result?.userErrors?.length) {
       onError?.(result.userErrors.map(e => e.message).join(', '));
@@ -40,6 +49,7 @@ export async function redirectToCheckout({ onError } = {}) {
 
     const checkoutUrl = result?.cart?.checkoutUrl;
     if (!checkoutUrl) {
+      console.error('[checkout] no checkoutUrl in result:', result);
       onError?.('Could not create checkout. Please try again.');
       return;
     }
@@ -50,6 +60,7 @@ export async function redirectToCheckout({ onError } = {}) {
     // Redirect to Shopify checkout
     window.location.href = checkoutUrl;
   } catch (err) {
+    console.error('[checkout] error:', err);
     onError?.(err.message || 'Checkout failed. Please try again.');
   }
 }

@@ -36,7 +36,7 @@ export function FooterHTML() {
               <img src="brand_assets/FrozenGarageDoors-fINAL-01.PNG" alt="Frozen Garage Door Solutions" style="height:40px;width:auto;display:block;">
             </div>
             <p style="color:rgba(255,255,255,0.45);font-size:0.875rem;line-height:1.7;max-width:280px;">
-              Professional-grade OHD garage door parts and opener systems. Serving residential and commercial customers across North America.
+              Professional-grade OHD garage door parts. Serving residential and commercial customers across North America.
             </p>
             <div style="display:flex;gap:10px;margin-top:20px;">
               <a href="#" style="width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6);text-decoration:none;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.16)'" onmouseout="this.style.background='rgba(255,255,255,0.08)'" aria-label="Facebook">

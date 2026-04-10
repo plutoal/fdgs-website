@@ -9,7 +9,9 @@ async function proxyGQL(query, variables = {}) {
     headers: { 'Content-Type': 'application/json' },
     body:    JSON.stringify({ query, variables }),
   });
-  return r.json();
+  const data = await r.json();
+  if (!r.ok || data?.error) console.error('[shopify] proxyGQL error:', data);
+  return data;
 }
 
 // ── Cart field fragment ───────────────────────────────────
