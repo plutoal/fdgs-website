@@ -11,6 +11,7 @@ async function proxyGQL(query, variables = {}) {
   });
   const data = await r.json();
   if (!r.ok || data?.error) console.error('[shopify] proxyGQL error:', data);
+  if (data?.errors) console.error('[shopify] GraphQL errors:', data.errors);
   return data;
 }
 
