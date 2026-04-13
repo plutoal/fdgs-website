@@ -70,7 +70,7 @@ module.exports = async function handler(req, res) {
         metafield(namespace: "custom", key: "specs") { value }
       }
     }
-    metaobjects(first: 5) {
+    metaobjects(type: "site_assets", first: 1) {
       nodes {
         fields { key value }
       }
