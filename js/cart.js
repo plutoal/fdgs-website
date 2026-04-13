@@ -39,9 +39,12 @@ export const Cart = {
   },
 
   changeQty(id, delta, maxStock) {
-    const c = read();
+    let c = read();
     const i = c.find(x => x.id === id);
-    if (i) i.qty = Math.max(1, Math.min(i.qty + delta, maxStock));
+    if (i) {
+      i.qty = Math.max(0, Math.min(i.qty + delta, maxStock));
+      if (i.qty === 0) c = c.filter(x => x.id !== id);
+    }
     write(c);
   },
 

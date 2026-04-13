@@ -55,7 +55,13 @@ function render() {
   document.getElementById("main-root").innerHTML = `
     <div style="max-width:1280px;margin:0 auto;padding:48px 24px 80px;">
 
-      <!-- Page title + breadcrumb -->
+      <!-- Continue shopping link -->
+      <a href="index.html" style="display:inline-flex;align-items:center;gap:6px;font-size:0.875rem;color:#6b7280;text-decoration:none;margin-bottom:24px;transition:color 0.15s;" onmouseover="this.style.color='#1a1a1a'" onmouseout="this.style.color='#6b7280'">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M19 12H5"/><path d="M12 5l-7 7 7 7"/></svg>
+        Continue Shopping
+      </a>
+
+      <!-- Page title -->
       <h1 class="font-display font-bold uppercase" style="font-size:clamp(2rem,5vw,3rem);letter-spacing:-0.02em;margin-bottom:8px;">Your Cart</h1>
       <p style="color:#6b7280;font-size:0.9rem;margin-bottom:48px;">${cart.length} item${cart.length !== 1 ? "s" : ""}</p>
 
@@ -87,11 +93,6 @@ function render() {
             })
             .join("")}
 
-          <div style="display:flex;gap:12px;margin-top:32px;">
-            <a href="index.html" class="btn" style="font-size:0.875rem;background:#fff;color:#1a1a1a;border:1px solid rgba(0,0,0,0.12);padding:10px 20px;border-radius:10px;">
-              ← Continue Shopping
-            </a>
-          </div>
         </div>
 
         <!-- Order summary -->
