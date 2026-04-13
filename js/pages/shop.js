@@ -1,4 +1,4 @@
-import { loadProducts, getProducts } from "../products.js";
+import { loadProducts, getProducts, getHeroVideo } from "../products.js";
 import { redirectToCheckout } from "../checkout.js";
 import { Cart } from "../cart.js";
 import { showToast } from "../toast.js";
@@ -37,7 +37,7 @@ document.getElementById("header-root").innerHTML = HeaderHTML({
   logoHref: "index.html",
   showSearch: true,
 });
-document.getElementById("hero-root").innerHTML = HeroHTML();
+document.getElementById("hero-root").innerHTML = HeroHTML(); // updated after loadProducts
 document.getElementById("footer-root").innerHTML = FooterHTML();
 
 // ── MAIN CATALOG ─────────────────────────────────────────
@@ -207,6 +207,12 @@ initFilterSidebar({ onChange: onFilterChange });
 
 (async () => {
   await loadProducts();
+  // Re-render hero with Shopify-hosted video URL if available
+  const heroVideo = getHeroVideo();
+  if (heroVideo) {
+    document.getElementById("hero-root").innerHTML = HeroHTML(heroVideo);
+    initHero();
+  }
   initCartDrawer({
     products: getProducts(),
     async onCheckout() {

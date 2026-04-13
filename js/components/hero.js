@@ -1,4 +1,4 @@
-export function HeroHTML() {
+export function HeroHTML(heroVideo = 'docs/videoplayback_fgds.mp4') {
   return `
     <section id="hero">
       <div class="hero-grid"></div>
@@ -32,7 +32,7 @@ export function HeroHTML() {
         <div class="hero-video-col" id="hero-video-col">
           <video id="hero-video" autoplay muted playsinline
                  style="width:100%;height:100%;object-fit:cover;border-radius:20px;display:block;">
-            <source src="docs/videoplayback_fgds.mp4" type="video/mp4">
+            <source src="${heroVideo}" type="video/mp4">
           </video>
         </div>
 

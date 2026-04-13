@@ -6,18 +6,16 @@ import { fetchProducts } from "./shopify.js";
 
 export { TYPES };
 
-let _products = null;
+let _products  = null;
+let _heroVideo = null;
 
-/**
- * Load products from Shopify if configured, otherwise use local data.
- * Caches result for the lifetime of the page.
- */
 export async function loadProducts() {
   if (_products) return _products;
   try {
     const r = await fetchProducts();
     if (r.configured && r.products?.length > 0) {
-      _products = r.products;
+      _products  = r.products;
+      _heroVideo = r.heroVideo || null;
       return _products;
     }
   } catch {
@@ -27,10 +25,10 @@ export async function loadProducts() {
   return _products;
 }
 
-/**
- * Synchronous accessor — returns whatever was last loaded.
- * Always call loadProducts() first and await it before using this.
- */
 export function getProducts() {
   return _products ?? LOCAL_PRODUCTS;
+}
+
+export function getHeroVideo() {
+  return _heroVideo;
 }
