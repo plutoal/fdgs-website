@@ -99,22 +99,15 @@ document.getElementById("footer-root").innerHTML = FooterHTML();
             
             <table style="width:100%;border-collapse:collapse;">
               <tr style= "background:#fff; "background:#fafafa;">
-                <td style="padding:20px 48px;font-size:0.82rem;color:#6b7280;font-weight:500;width:45%;border-bottom:1px solid rgba(0,0,0,0.05);">Kit includes:
+                <td style="padding:20px 48px;font-size:0.82rem;color:#6b7280;font-weight:500;width:45%;border-bottom:1px solid rgba(0,0,0,0.05); white-space:pre-line;">Kit includes:
 
 -Instruction Manual
-
 -Self Regulating Heated Cable (1)
-
 -Angle Aluminum cut to proper length (2)
-
 -Single expansion anchor (5) 1 extra
-
 -Zinc plated bolt (5) 1 extra
-
 -Zinc plated washer (5) 1 extra
-
 -Reflective stickers (4)
-
 -Clamps (2)</td>
               </tr>
             </table>
