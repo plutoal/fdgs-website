@@ -70,6 +70,9 @@ const renderNavGroup = ({ label, icon, links, href }) => {
 
 export function HeaderHTML({ logoHref = 'index.html', showSearch = false } = {}) {
   return `
+    <!-- Google Translate (hidden) -->
+    <div id="google_translate_element" style="display:none;"></div>
+
     <!-- Nav scrim -->
     <div id="nav-scrim" class="scrim" aria-hidden="true"></div>
 
@@ -89,10 +92,14 @@ export function HeaderHTML({ logoHref = 'index.html', showSearch = false } = {})
       </div>
 
       <div class="nav-drawer-footer">
-        <a href="#" class="nav-signin-btn">
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          Sign In / Register
-        </a>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:0.8rem;color:rgba(255,255,255,0.45);">Language</span>
+          <div class="lang-switch" style="position:relative;display:inline-flex;align-items:center;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:2px;">
+            <div class="lang-switch-thumb" style="position:absolute;left:2px;top:2px;bottom:2px;width:32px;border-radius:16px;background:rgba(38,149,200,0.75);transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1);pointer-events:none;"></div>
+            <button class="lang-btn notranslate" data-lang="en" translate="no" style="position:relative;z-index:1;width:32px;padding:5px 0;font-size:0.78rem;font-weight:600;background:transparent;border:none;cursor:pointer;color:#fff;font-family:inherit;line-height:1;text-align:center;transition:color 0.15s;">EN</button>
+            <button class="lang-btn notranslate" data-lang="fr" translate="no" style="position:relative;z-index:1;width:32px;padding:5px 0;font-size:0.78rem;font-weight:600;background:transparent;border:none;cursor:pointer;color:rgba(255,255,255,0.5);font-family:inherit;line-height:1;text-align:center;transition:color 0.15s;">FR</button>
+          </div>
+        </div>
       </div>
     </nav>
 
@@ -129,10 +136,11 @@ export function HeaderHTML({ logoHref = 'index.html', showSearch = false } = {})
           <button id="mob-search-btn" class="btn btn-ghost" style="padding:10px;border-radius:10px;" aria-label="Search">
             <svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
           </button>` : ''}
-          <a href="#" class="btn btn-ghost" style="padding:10px;border-radius:10px;gap:6px;" aria-label="Account">
-            <svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            <span class="hdr-label" style="font-size:0.8rem;color:rgba(255,255,255,0.55);">Sign In</span>
-          </a>
+          <div class="lang-switch" style="position:relative;display:inline-flex;align-items:center;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:2px;">
+            <div class="lang-switch-thumb" style="position:absolute;left:2px;top:2px;bottom:2px;width:32px;border-radius:16px;background:rgba(38,149,200,0.75);transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1);pointer-events:none;"></div>
+            <button class="lang-btn notranslate" data-lang="en" translate="no" style="position:relative;z-index:1;width:32px;padding:5px 0;font-size:0.78rem;font-weight:600;background:transparent;border:none;cursor:pointer;color:#fff;font-family:inherit;line-height:1;text-align:center;transition:color 0.15s;">EN</button>
+            <button class="lang-btn notranslate" data-lang="fr" translate="no" style="position:relative;z-index:1;width:32px;padding:5px 0;font-size:0.78rem;font-weight:600;background:transparent;border:none;cursor:pointer;color:rgba(255,255,255,0.5);font-family:inherit;line-height:1;text-align:center;transition:color 0.15s;">FR</button>
+          </div>
           <button id="cart-btn" class="btn btn-ghost" style="padding:10px;border-radius:10px;position:relative;" aria-label="Cart">
             <svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
             <span id="cart-badge" style="display:none;position:absolute;top:4px;right:4px;min-width:18px;height:18px;background:#2695c8;color:#fff;border-radius:9px;font-size:0.65rem;font-weight:700;padding:0 4px;line-height:18px;text-align:center;"></span>
@@ -155,7 +163,63 @@ export function updateBadge(pop = false) {
   }
 }
 
+// ── LANGUAGE TOGGLE ──────────────────────────────────────
+function initTranslate() {
+  // Inject Google Translate script once
+  if (!document.getElementById('gt-script')) {
+    window.googleTranslateElementInit = function () {
+      new google.translate.TranslateElement(
+        { pageLanguage: 'en', includedLanguages: 'en,fr', autoDisplay: false },
+        'google_translate_element'
+      );
+    };
+    const s = document.createElement('script');
+    s.id  = 'gt-script';
+    s.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    document.head.appendChild(s);
+  }
+}
+
+function setLang(lang) {
+  const select = document.querySelector('.goog-te-combo');
+  if (select) {
+    select.value = lang;
+    select.dispatchEvent(new Event('change'));
+  } else {
+    // Translate widget not ready yet — use cookie fallback
+    const d = location.hostname;
+    if (lang === 'en') {
+      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${d}`;
+    } else {
+      document.cookie = `googtrans=/en/${lang}; path=/`;
+      document.cookie = `googtrans=/en/${lang}; path=/; domain=${d}`;
+    }
+    location.reload();
+  }
+}
+
+function syncLangButtons(activeLang) {
+  const active = activeLang ?? (document.cookie.includes('googtrans=/en/fr') ? 'fr' : 'en');
+  document.querySelectorAll('.lang-switch-thumb').forEach(thumb => {
+    thumb.style.transform = active === 'fr' ? 'translateX(32px)' : 'translateX(0)';
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.style.color = btn.dataset.lang === active ? '#fff' : 'rgba(255,255,255,0.5)';
+  });
+}
+
 export function initHeader({ onSearchInput, onSearchSubmit, onCartOpen, onSearchOpen } = {}) {
+  initTranslate();
+  syncLangButtons();
+  document.querySelectorAll('.lang-switch').forEach(sw =>
+    sw.addEventListener('click', (e) => {
+      const rect = sw.getBoundingClientRect();
+      const lang = e.clientX < rect.left + rect.width / 2 ? 'en' : 'fr';
+      setLang(lang);
+      syncLangButtons(lang);
+    })
+  );
   // Scroll shrink
   window.addEventListener('scroll', () =>
     document.getElementById('hdr')?.classList.toggle('scrolled', window.scrollY > 50)

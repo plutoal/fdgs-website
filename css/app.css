@@ -546,3 +546,13 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.25); }
   /* Add padding so content doesn't hide behind sticky bar */
   body.has-sticky-cta #main-root { padding-bottom: 80px; }
 }
+
+/* ── GOOGLE TRANSLATE — hide toolbar ── */
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate,
+#goog-gt-tt,
+.goog-te-balloon-frame,
+.goog-tooltip,
+.goog-tooltip:hover,
+.skiptranslate { display: none !important; }
+body { top: 0 !important; }
