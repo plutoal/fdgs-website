@@ -14,5 +14,8 @@
   "license": "ISC",
   "devDependencies": {
     "puppeteer-core": "^24.40.0"
+  },
+  "dependencies": {
+    "nodemailer": "^8.0.5"
   }
 }

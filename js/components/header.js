@@ -28,7 +28,7 @@ const NAV_GROUPS = [
     links: [
       { label: 'Shipping Info',     href: 'shipping-policy.html' },
       { label: 'Returns & Refunds', href: 'returns-policy.html' },
-      { label: 'Contact Us',        href: '#' },
+      { label: 'Contact Us',        href: 'contact.html' },
     ],
   },
   {

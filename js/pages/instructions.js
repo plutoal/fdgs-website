@@ -53,13 +53,22 @@ const STEPS = [
   },
   {
     n: 2,
-    text: `[Step 2 instruction text — paste your content here.]`,
+    text: ` With the garage door closed, use the pencil to mark a line on the concrete from one side of the door to the other.  Do this on the inside and outside of the door.`,
     hasVideo: true,
-    link: VIDEO_PLACEHOLDER,
+    link: `
+      <div style="
+        width:100%; aspect-ratio:16/9; border-radius:14px; overflow:hidden;
+        background:#1a1a1a; display:flex; flex-direction:column;
+        align-items:center; justify-content:center; gap:12px;
+        border:1px solid rgba(255,255,255,0.06); margin:24px 0 8px;
+      ">
+      <iframe width="100%" height="100%" src="https://www.youtube.com/embed/SSwD_HIJ_B8?si=2gkhFITtI97G-hRb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    `,
   },
   {
     n: 3,
-    text: `[Step 3 instruction text — paste your content here.]`,
+    text: ` The power cord can be positioned on the left or right side of your overhead door. Ensure to leave at least 1 1/4 inches of space at each end between the angle steel/aluminum and the track of the garage door. This is to leave enough space for the tip of the heated wire and for the wire to bend around the garage door track. `,
     hasVideo: true,
     link: `
       <div style="width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;
@@ -76,51 +85,103 @@ const STEPS = [
   },
   {
     n: 4,
-    text: `[Step 4 instruction text — paste your content here.]`,
+    text: ` Open the garage door and place the angle steel inside the marked lines. Place the angle steel with the holes on the inside of the garage. Leave a gap of approximately 1/8 inch in between the angle steel/aluminum where the water will flow outside. Water will also drain underneath the angle steel/aluminum. `,
     hasVideo: true,
-    link: "",
+    link: `
+      <div style="width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;
+                  background:#1a1a1a;position:relative;
+                  border:1px solid rgba(255,255,255,0.06);margin:24px 0 8px;">
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/lmjaDOlHQ34?si=8A0PfK3oTJX10h8n" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>      
+      </div>
+    `,
   },
   {
     n: 5,
-    text: `[Step 5 instruction text — paste your content here.]`,
+    text: ` Using the hammer and punch, mark the centre of each hole on the angle steel/aluminum, this will determine where you will drill the hole into the concrete. `,
     hasVideo: true,
-    link: "",
+    link: `
+      <div style="width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;
+                  background:#1a1a1a;position:relative;
+                  border:1px solid rgba(255,255,255,0.06);margin:24px 0 8px;">
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Jy07xupPm9Y?si=DfHFmMjhqg4_zLDK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    `,
   },
   {
     n: 6,
-    text: `[Step 6 instruction text — paste your content here.]`,
+    text: ` Drill holes using a half inch drill bit. Place a tape on the drill bit at approximately 1 1/4 inch from the tip to help determine how deep to drill the hole. `,
     hasVideo: true,
-    link: "",
+    link: `
+      <div style="width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;
+                  background:#1a1a1a;position:relative;
+                  border:1px solid rgba(255,255,255,0.06);margin:24px 0 8px;">
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/bhhjpBLHO1k?si=wFgIwTxU0tarat1w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    `,
   },
   {
     n: 7,
-    text: `[Step 7 instruction text — paste your content here.]`,
+    text: `Vacuum all holes. Insert the bolt and washer into the top of the anchor (marked “1/4 Bolt”) and catch the nut. Hand-tighten as much as possible without expanding the anchor. </br>
+- 7.1: Insert the anchor into the hole and tighten the bolt with a 7/16" ratchet to secure it. Once set, remove the bolt; the nut should remain in place near the top of the anchor.`,
     hasVideo: true,
-    link: "",
+    link: `
+      <div style="width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;
+                  background:#1a1a1a;position:relative;
+                  border:1px solid rgba(255,255,255,0.06);margin:24px 0 8px;">
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/LUVmDhGzMj4?si=MgyA1g9H3SNC1wih" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    `,
   },
   {
     n: 8,
-    text: `[Step 8 instruction text — paste your content here.]`,
+    text: ` Insert the wire tip behind the track and extend it along the marked area. </br>
+- 8.1: Position the angle steel over the wire, ensuring the wire lies flat and is not pinched. Align the steel with your drilled holes. </br>
+- 8.2: Starting at the wire tip (opposite the plug), install the bolts and washers. Tighten firmly, but do not overtighten to avoid breaking the anchors. </br>
+- Note: If an anchor breaks, drill it out with a metal bit and replace it with one of the two provided spares. `,
     hasVideo: true,
-    link: "",
+    link: `
+      <div style="width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;
+                  background:#1a1a1a;position:relative;
+                  border:1px solid rgba(255,255,255,0.06);margin:24px 0 8px;">
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/oXg338Bu9TE?si=eUyBeN-0_FxK0DNs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    `,
   },
   {
     n: 9,
-    text: `[Step 9 instruction text — paste your content here.]`,
+    text: ` Plug heated wire into outlet and conduct a test as instructed on the wire box. `,
     hasVideo: true,
-    link: "",
+    link: `
+      <div style="width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;
+                  background:#1a1a1a;position:relative;
+                  border:1px solid rgba(255,255,255,0.06);margin:24px 0 8px;">
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/d696RzUf5Jw?si=TW5HPQfU0P9-TXCv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    `,
   },
   {
     n: 10,
-    text: `[Step 10 instruction text — paste your content here.]`,
+    text: `Install Reflective stickers on the angle steel/aluminum to alert everybody of the tripping hazard. `,
     hasVideo: true,
-    link: "",
+    link: `
+      <div style="width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;
+                  background:#1a1a1a;position:relative;
+                  border:1px solid rgba(255,255,255,0.06);margin:24px 0 8px;">
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/0cNMRayDo18?si=HcgvPSKqQ016kaCZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    `,
   },
   {
     n: 11,
-    text: `[Step 11 instruction text — paste your content here.]`,
+    text: `The garage door down travel may require some adjustment, locate the side of your garage door motor which should show down travel button and adjust as necessary. `,
     hasVideo: true,
-    link: "",
+    link: `
+      <div style="width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;
+                  background:#1a1a1a;position:relative;
+                  border:1px solid rgba(255,255,255,0.06);margin:24px 0 8px;">
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Pxk2-c3NwRc?si=VT-aXNa9hJ2jmy0l" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    `,
   },
   {
     n: 12,

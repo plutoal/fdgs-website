@@ -10,7 +10,7 @@ export function FooterHTML() {
     { label: "Shipping Info", href: "shipping-policy.html" },
     { label: "Returns & Refunds", href: "returns-policy.html" },
     { label: "Installation Guides", href: "instructions.html" },
-    { label: "Contact Us", href: "#" },
+    { label: "Contact Us", href: "contact.html" },
     { label: "Reviews", href: "testimonials.html" },
     { label: "Sign In / Register", href: "#" },
   ];
@@ -39,11 +39,14 @@ export function FooterHTML() {
               Professional-grade OHD garage door parts. Serving residential and commercial customers across North America.
             </p>
             <div style="display:flex;gap:10px;margin-top:20px;">
-              <a href="#" style="width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6);text-decoration:none;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.16)'" onmouseout="this.style.background='rgba(255,255,255,0.08)'" aria-label="Facebook">
+              <a href="https://www.facebook.com/FGDSCanada/" style="width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6);text-decoration:none;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.16)'" onmouseout="this.style.background='rgba(255,255,255,0.08)'" aria-label="Facebook">
                 <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
               </a>
-              <a href="#" style="width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6);text-decoration:none;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.16)'" onmouseout="this.style.background='rgba(255,255,255,0.08)'" aria-label="Instagram">
+              <a href="https://www.instagram.com/frozengaragedoorsolutions/" style="width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6);text-decoration:none;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.16)'" onmouseout="this.style.background='rgba(255,255,255,0.08)'" aria-label="Instagram">
                 <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+              </a>
+              <a href="https://www.youtube.com/@FGDSCanada" style="width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6);text-decoration:none;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.16)'" onmouseout="this.style.background='rgba(255,255,255,0.08)'" aria-label="YouTube">
+                <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M23 7s-.3-1.9-1.1-2.7c-1.1-1.1-2.3-1.1-2.8-1.2C16.4 3 12 3 12 3s-4.4 0-7.1.1C4.4 3.2 3.2 3.2 2.1 4.3 1.3 5.1 1 7 1 7S.7 9.2.7 11.4v2.1C.7 15.7 1 17.9 1 17.9s.3 1.9 1.1 2.7c1.1 1.1 2.5 1.1 3.1 1.1C7.2 21.9 12 22 12 22s4.4 0 7.1-.3c.6-.1 1.8-.1 2.8-1.2.8-.8 1.1-2.7 1.1-2.7s.3-2.2.3-4.4v-2.1C23.3 9.2 23 7 23 7zM9.7 15.5V8.4l7.6 3.6-7.6 3.5z"/></svg>
               </a>
             </div>
           </div>

@@ -48,10 +48,9 @@ document.getElementById("main-root").innerHTML = `
     <div style="max-width:1280px;margin:0 auto;">
       <div style="margin-bottom:48px;">
         <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
-          <h2 class="font-display font-bold uppercase" style="font-size:clamp(2rem,5vw,3rem);letter-spacing:-0.02em;line-height:1;">OHD Parts Catalog</h2>
+          <h2 class="font-display font-bold uppercase" style="font-size:clamp(2rem,5vw,3rem);letter-spacing:-0.02em;line-height:1;">OHD Antifreeze Kit</h2>
           ${ManualButton()}
         </div>
-        <p style="color:#6b7280;margin-top:8px;font-size:0.95rem;">Professional garage door openers, springs, sensors, and accessories</p>
       </div>
       <div style="display:flex;gap:32px;align-items:flex-start;">
 
