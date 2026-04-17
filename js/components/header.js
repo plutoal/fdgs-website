@@ -1,4 +1,5 @@
 import { Cart } from '../cart.js';
+import { initPromoBanner } from './promoBanner.js';
 
 const NAV_GROUPS = [
   {
@@ -70,6 +71,9 @@ const renderNavGroup = ({ label, icon, links, href }) => {
 
 export function HeaderHTML({ logoHref = 'index.html', showSearch = false } = {}) {
   return `
+    <!-- Promo Banner (injected inside fixed header wrapper) -->
+    <div id="promo-banner-wrap"></div>
+
     <!-- Google Translate (hidden) -->
     <div id="google_translate_element" style="display:none;"></div>
 
@@ -103,7 +107,7 @@ export function HeaderHTML({ logoHref = 'index.html', showSearch = false } = {})
       </div>
     </nav>
 
-    <header id="hdr" style="position:fixed;top:0;left:0;right:0;z-index:30;">
+    <header id="hdr">
       <div class="hdr-inner">
 
       <button id="hamburger-btn" class="btn btn-ghost" style="padding:10px;border-radius:10px;" aria-label="Open menu" aria-expanded="false" aria-controls="nav-drawer">
@@ -210,6 +214,7 @@ function syncLangButtons(activeLang) {
 }
 
 export function initHeader({ onSearchInput, onSearchSubmit, onCartOpen, onSearchOpen } = {}) {
+  initPromoBanner();
   initTranslate();
   syncLangButtons();
   document.querySelectorAll('.lang-switch').forEach(sw =>
@@ -220,10 +225,12 @@ export function initHeader({ onSearchInput, onSearchSubmit, onCartOpen, onSearch
       syncLangButtons(lang);
     })
   );
-  // Scroll shrink
-  window.addEventListener('scroll', () =>
-    document.getElementById('hdr')?.classList.toggle('scrolled', window.scrollY > 50)
-  );
+  // Scroll shrink + banner collapse
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY > 50;
+    document.getElementById('hdr')?.classList.toggle('scrolled', scrolled);
+    document.getElementById('header-root')?.classList.toggle('banner-hidden', scrolled);
+  });
 
   // Responsive layout
   function syncLayout() {

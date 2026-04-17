@@ -14,6 +14,7 @@
   --base:       #f8f8f8;
   --surface:    #ffffff;
   --hdr:        72px;
+  --banner:     36px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -25,6 +26,49 @@ body { background: var(--base); color: var(--ink); font-family: 'Inter', sans-se
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+
+/* ── HEADER ROOT (fixed wrapper) ── */
+#header-root {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 31;
+}
+
+/* ── PROMO BANNER ── */
+#promo-banner {
+  height: var(--banner);
+  background: var(--brand-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: height 0.3s ease, opacity 0.3s ease;
+}
+#header-root.banner-hidden #promo-banner {
+  height: 0;
+  opacity: 0;
+}
+.promo-item {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: 0.02em;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.promo-item.promo-active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.promo-icon { display: flex; align-items: center; opacity: 0.8; }
 
 /* ── HEADER ── */
 #hdr {
@@ -129,7 +173,7 @@ body { background: var(--base); color: var(--ink); font-family: 'Inter', sans-se
 /* ── HERO ── */
 #hero {
   min-height: 50vh;
-  padding: var(--hdr) 0 80px;
+  padding: calc(var(--hdr) + var(--banner)) 0 80px;
   display: flex; align-items: center; justify-content: center;
   position: relative; overflow: hidden;
   background:
