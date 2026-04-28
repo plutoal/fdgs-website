@@ -45,7 +45,7 @@ document.getElementById("footer-root").innerHTML = FooterHTML();
     const disc = isSale ? Math.round((1 - p.price / p.compareAt) * 100) : 0;
 
     document.getElementById("main-root").innerHTML = `
-    <div style="max-width:1280px;margin:0 auto;padding:32px 24px 80px;">
+    <div style="max-width:1280px;margin:0 auto;padding:46px 24px 80px;">
 
       <!-- Breadcrumb -->
       <nav style="display:flex;align-items:center;gap:8px;font-size:0.8rem;color:#9ca3af;margin-bottom:40px;flex-wrap:wrap;">
@@ -98,13 +98,25 @@ document.getElementById("footer-root").innerHTML = FooterHTML();
             </div>
             
             <table style="width:100%;border-collapse:collapse;">
-              ${typeof p.specs === "string" && p.specs
-                ? p.specs.split("\n").filter(l => l.trim() && !l.toLowerCase().startsWith("kit includes")).map((line, idx, arr) => {
-                    const clean = line.replace(/^[-–]\s*/, "").trim();
-                    const match = clean.match(/^(.+?)\s+\((\d+[^)]*)\)\s*(?:\d+\s+extra)?$/);
-                    const item = match ? match[1].trim() : clean.replace(/\s+\d+\s+extra$/, "").trim();
-                    const qty = match ? match[2] : null;
-                    return `<tr style="background:${idx % 2 === 0 ? "#fff" : "#fafafa"};">
+              ${
+                typeof p.specs === "string" && p.specs
+                  ? p.specs
+                      .split("\n")
+                      .filter(
+                        (l) =>
+                          l.trim() &&
+                          !l.toLowerCase().startsWith("kit includes"),
+                      )
+                      .map((line, idx, arr) => {
+                        const clean = line.replace(/^[-–]\s*/, "").trim();
+                        const match = clean.match(
+                          /^(.+?)\s+\((\d+[^)]*)\)\s*(?:\d+\s+extra)?$/,
+                        );
+                        const item = match
+                          ? match[1].trim()
+                          : clean.replace(/\s+\d+\s+extra$/, "").trim();
+                        const qty = match ? match[2] : null;
+                        return `<tr style="background:${idx % 2 === 0 ? "#fff" : "#fafafa"};">
                       <td style="padding:12px 20px;font-size:0.85rem;color:#1a1a1a;font-weight:500;${idx < arr.length - 1 ? "border-bottom:1px solid rgba(0,0,0,0.05);" : ""}">
                         <span style="display:inline-flex;align-items:center;gap:8px;">
                           <svg width="14" height="14" fill="none" stroke="#2695c8" stroke-width="2.2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
@@ -115,8 +127,9 @@ document.getElementById("footer-root").innerHTML = FooterHTML();
                         ${qty ? `<span style="background:#f3f4f6;padding:2px 8px;border-radius:6px;font-size:0.78rem;font-weight:600;">×${qty}</span>` : ""}
                       </td>
                     </tr>`;
-                  }).join("")
-                : `<tr><td style="padding:20px;font-size:0.85rem;color:#9ca3af;">No kit contents listed.</td></tr>`
+                      })
+                      .join("")
+                  : `<tr><td style="padding:20px;font-size:0.85rem;color:#9ca3af;">No kit contents listed.</td></tr>`
               }
             </table>
           </div>

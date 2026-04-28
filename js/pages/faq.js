@@ -57,7 +57,7 @@ const FAQS = [
 ];
 
 document.getElementById("main-root").innerHTML = `
-  <div style="max-width:760px;margin:0 auto;padding:calc(var(--hdr) + var(--banner) + 32px) 24px 96px;">
+  <div style="max-width:760px;margin:0 auto;padding:24px 24px 96px;">
 
     <!-- Breadcrumb -->
     <nav style="display:flex;align-items:center;gap:8px;font-size:0.8rem;color:#9ca3af;margin-bottom:40px;">

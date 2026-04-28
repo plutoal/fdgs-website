@@ -79,7 +79,20 @@ document.getElementById("main-root").innerHTML = `
         </div>
       </div>
     </div>
-  </section>`;
+  </section>
+
+  <!-- ── ABOUT CTA ── -->
+  <div style="background:#e8f4fb;border-top:1px solid rgba(38,149,200,0.15);padding:72px 24px;text-align:center;">
+    <div style="max-width:580px;margin:0 auto;">
+      <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#2695c8;margin-bottom:12px;">Our Story</div>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-0.02em;color:#1a1a1a;line-height:1.1;margin-bottom:16px;">Born from a Canadian Winter.</h2>
+      <p style="font-size:0.92rem;color:#6b7280;line-height:1.75;margin-bottom:32px;">We didn't set out to build a product; we set out to fix a problem. Learn why we built this and what drives us.</p>
+      <a href="about.html" style="display:inline-flex;align-items:center;gap:8px;padding:13px 28px;font-size:0.95rem;font-weight:600;border-radius:12px;background:#1a1a1a;color:#fff;text-decoration:none;transition:background 0.15s;" onmouseover="this.style.background='#2695c8'" onmouseout="this.style.background='#1a1a1a'">
+        The Story Behind the Kit
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>`;
 
 // ── RENDER PRODUCTS ──────────────────────────────────────
 function renderProducts() {

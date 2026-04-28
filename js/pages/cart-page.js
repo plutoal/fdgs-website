@@ -53,7 +53,7 @@ function render() {
   const freeShipping = sub >= 200;
 
   document.getElementById("main-root").innerHTML = `
-    <div style="max-width:1280px;margin:0 auto;padding:calc(var(--hdr) + var(--banner) + 32px) 24px 80px;">
+    <div style="max-width:1280px;margin:0 auto;padding:24px 24px 80px;">
 
       <!-- Continue shopping link -->
       <a href="index.html" style="display:inline-flex;align-items:center;gap:6px;font-size:0.875rem;color:#6b7280;text-decoration:none;margin-bottom:24px;transition:color 0.15s;" onmouseover="this.style.color='#1a1a1a'" onmouseout="this.style.color='#6b7280'">

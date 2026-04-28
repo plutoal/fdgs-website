@@ -21,6 +21,10 @@
 html { scroll-behavior: smooth; }
 body { background: var(--base); color: var(--ink); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
 
+/* ── MAIN CONTENT OFFSET (fixed header + banner) ── */
+#main-root { padding-top: calc(var(--hdr) + var(--banner)); }
+#main-root:has(> #catalog) { padding-top: 0; }
+
 /* ── SCROLLBAR ── */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
