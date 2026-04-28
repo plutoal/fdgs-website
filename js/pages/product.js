@@ -98,7 +98,7 @@ document.getElementById("footer-root").innerHTML = FooterHTML();
             </div>
             
             <table style="width:100%;border-collapse:collapse;">
-              ${p.specs
+              ${typeof p.specs === "string" && p.specs
                 ? p.specs.split("\n").filter(l => l.trim() && !l.toLowerCase().startsWith("kit includes")).map((line, idx, arr) => {
                     const clean = line.replace(/^[-–]\s*/, "").trim();
                     const match = clean.match(/^(.+?)\s+\((\d+[^)]*)\)\s*(?:\d+\s+extra)?$/);

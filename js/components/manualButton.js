@@ -7,10 +7,9 @@ const ICON = `<svg width="14" height="14" fill="none" stroke="currentColor" stro
 
 export function ManualButton() {
   return `
-    <a href="manuals/Frozen Garage Door Solutions Cable Manual.pdf"
-       target="_blank" rel="noopener"
+    <a href="instructions.html"
        class="manual-btn"
-       title="Open Installation Manual (PDF)">
+       title="View Installation Instructions">
       ${ICON}
       Install Guide
     </a>`;

@@ -183,18 +183,6 @@ const STEPS = [
       </div>
     `,
   },
-  {
-    n: 12,
-    text: `[Step 12 instruction text — paste your content here.]`,
-    hasVideo: false,
-    link: "",
-  },
-  {
-    n: 13,
-    text: `[Step 13 instruction text — paste your content here.]`,
-    hasVideo: false,
-    link: "",
-  },
 ];
 
 const INTRO = `Follow the steps below to correctly install your OHD garage door system. Watch each video for a visual walkthrough of the step, and refer to the full installation manual for detailed specifications and safety requirements.`;
@@ -220,11 +208,11 @@ document.getElementById("header-root").innerHTML = HeaderHTML({
   logoHref: "index.html",
 });
 document.getElementById("footer-root").innerHTML = FooterHTML();
-document.title = "Instructions, Videos & Manual — FDGS Garage Parts";
+document.title = "Install Guide — FDGS Garage Parts";
 
 // ── RENDER PAGE ──────────────────────────────────────────
 document.getElementById("main-root").innerHTML = `
-  <div style="max-width:780px;margin:0 auto;padding:56px 24px 96px;">
+  <div style="max-width:780px;margin:0 auto;padding:calc(var(--hdr) + var(--banner) + 32px) 24px 96px;">
 
     <!-- Breadcrumb -->
     <nav style="display:flex;align-items:center;gap:8px;font-size:0.8rem;color:#9ca3af;margin-bottom:40px;flex-wrap:wrap;">
@@ -237,18 +225,18 @@ document.getElementById("main-root").innerHTML = `
     <!-- Page heading -->
     <div style="margin-bottom:32px;">
       <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,5vw,3rem);letter-spacing:-0.02em;color:#1a1a1a;margin-bottom:10px;">
-        Instructions, Videos and Manual
+        Install Guide
       </h1>
       <p style="font-size:0.95rem;line-height:1.75;color:#4b5563;max-width:640px;">${INTRO}</p>
     </div>
 
     <!-- Manual download -->
-    <a href="manuals/Frozen Garage Door Solutions Cable Manual.pdf" target="_blank" rel="noopener"
+    <button id="manual-dl-btn"
        style="
          display:inline-flex; align-items:center; gap:10px;
          background:#1a1a1a; color:#fff; text-decoration:none;
          padding:12px 22px; border-radius:12px; font-size:0.875rem; font-weight:600;
-         margin-bottom:48px;
+         margin-bottom:48px; border:none; cursor:pointer;
          box-shadow:0 2px 12px rgba(0,0,0,0.18);
          transition:background 0.15s, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
        "
@@ -261,7 +249,7 @@ document.getElementById("main-root").innerHTML = `
         <polyline points="9 15 12 18 15 15"/>
       </svg>
       Download Installation Manual (PDF)
-    </a>
+    </button>
 
     <!-- Numbered steps -->
     ${STEPS.map(renderStep).join("")}
@@ -275,6 +263,15 @@ document.getElementById("main-root").innerHTML = `
       </a>
     </div>
   </div>`;
+
+// ── MANUAL DOWNLOAD (language-aware) ─────────────────────
+document.getElementById("manual-dl-btn").addEventListener("click", () => {
+  const isFr = document.cookie.includes("googtrans=/en/fr");
+  const pdf = isFr
+    ? "manuals/Frozen Garage Door Solutions Cable Manual FR.pdf"
+    : "manuals/Frozen Garage Door Solutions Cable Manual.pdf";
+  window.open(pdf, "_blank", "noopener");
+});
 
 // ── INIT ─────────────────────────────────────────────────
 initHeader({
