@@ -99,14 +99,16 @@ document.getElementById("footer-root").innerHTML = FooterHTML();
             
             <table style="width:100%;border-collapse:collapse;">
               ${p.specs
-                ? p.specs.split("\n").filter(l => l.trim()).map((line, idx, arr) => {
-                    const text = line.replace(/^[-–]\s*/, "");
-                    const [item, qty] = text.split(/\s*\((\d+[^)]*)\)\s*$/).filter(Boolean);
+                ? p.specs.split("\n").filter(l => l.trim() && !l.toLowerCase().startsWith("kit includes")).map((line, idx, arr) => {
+                    const clean = line.replace(/^[-–]\s*/, "").trim();
+                    const match = clean.match(/^(.+?)\s+\((\d+[^)]*)\)\s*(?:\d+\s+extra)?$/);
+                    const item = match ? match[1].trim() : clean.replace(/\s+\d+\s+extra$/, "").trim();
+                    const qty = match ? match[2] : null;
                     return `<tr style="background:${idx % 2 === 0 ? "#fff" : "#fafafa"};">
                       <td style="padding:12px 20px;font-size:0.85rem;color:#1a1a1a;font-weight:500;${idx < arr.length - 1 ? "border-bottom:1px solid rgba(0,0,0,0.05);" : ""}">
                         <span style="display:inline-flex;align-items:center;gap:8px;">
                           <svg width="14" height="14" fill="none" stroke="#2695c8" stroke-width="2.2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-                          ${item?.trim() ?? text}
+                          ${item}
                         </span>
                       </td>
                       <td style="padding:12px 20px;font-size:0.85rem;color:#6b7280;text-align:right;${idx < arr.length - 1 ? "border-bottom:1px solid rgba(0,0,0,0.05);" : ""}">
