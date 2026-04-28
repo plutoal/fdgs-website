@@ -98,18 +98,26 @@ document.getElementById("footer-root").innerHTML = FooterHTML();
             </div>
             
             <table style="width:100%;border-collapse:collapse;">
-              <tr style= "background:#fff; "background:#fafafa;">
-                <td style="padding:20px 48px;font-size:0.82rem;color:#6b7280;font-weight:500;width:45%;border-bottom:1px solid rgba(0,0,0,0.05); white-space:pre-line;">Kit includes:
-
--Instruction Manual
--Self Regulating Heated Cable (1)
--Angle Aluminum cut to proper length (2)
--Single expansion anchor (5) 1 extra
--Zinc plated bolt (5) 1 extra
--Zinc plated washer (5) 1 extra
--Reflective stickers (4)
--Clamps (2)</td>
-              </tr>
+              ${p.specs
+                ? p.specs.split("\n").filter(l => l.trim() && !l.toLowerCase().startsWith("kit includes")).map((line, idx, arr) => {
+                    const clean = line.replace(/^[-–]\s*/, "").trim();
+                    const match = clean.match(/^(.+?)\s+\((\d+[^)]*)\)\s*(?:\d+\s+extra)?$/);
+                    const item = match ? match[1].trim() : clean.replace(/\s+\d+\s+extra$/, "").trim();
+                    const qty = match ? match[2] : null;
+                    return `<tr style="background:${idx % 2 === 0 ? "#fff" : "#fafafa"};">
+                      <td style="padding:12px 20px;font-size:0.85rem;color:#1a1a1a;font-weight:500;${idx < arr.length - 1 ? "border-bottom:1px solid rgba(0,0,0,0.05);" : ""}">
+                        <span style="display:inline-flex;align-items:center;gap:8px;">
+                          <svg width="14" height="14" fill="none" stroke="#2695c8" stroke-width="2.2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                          ${item}
+                        </span>
+                      </td>
+                      <td style="padding:12px 20px;font-size:0.85rem;color:#6b7280;text-align:right;${idx < arr.length - 1 ? "border-bottom:1px solid rgba(0,0,0,0.05);" : ""}">
+                        ${qty ? `<span style="background:#f3f4f6;padding:2px 8px;border-radius:6px;font-size:0.78rem;font-weight:600;">×${qty}</span>` : ""}
+                      </td>
+                    </tr>`;
+                  }).join("")
+                : `<tr><td style="padding:20px;font-size:0.85rem;color:#9ca3af;">No kit contents listed.</td></tr>`
+              }
             </table>
           </div>
         </div>
