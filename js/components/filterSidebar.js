@@ -44,7 +44,12 @@ function filterBodyHTML() {
 export function renderFilterPanels() {
   const sbBody = document.getElementById('sidebar-filter-body');
   const shBody = document.getElementById('sheet-filters');
-  if (sbBody) sbBody.innerHTML = filterBodyHTML();
+  if (sbBody) {
+    sbBody.innerHTML = filterBodyHTML();
+    if (sbBody.style.maxHeight !== '0px' && sbBody.style.maxHeight !== '') {
+      sbBody.style.maxHeight = sbBody.scrollHeight + 200 + 'px';
+    }
+  }
   if (shBody) shBody.innerHTML = filterBodyHTML();
   reAttachFilterEvents();
 }
@@ -70,11 +75,14 @@ export function SidebarHTML() {
   return `
     <aside id="sidebar" style="width:240px;flex-shrink:0;position:sticky;top:88px;display:none;">
       <div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.06);box-shadow:0 1px 2px rgba(38,149,200,0.04),0 4px 16px rgba(0,0,0,0.05);overflow:hidden;">
-        <div style="padding:16px 20px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between;">
+        <button id="sidebar-toggle" style="width:100%;padding:16px 20px;border:none;background:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;">
           <span class="font-display font-bold" style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:#6b7280;">Filters</span>
+          <svg id="sidebar-chevron" width="14" height="14" fill="none" stroke="#6b7280" stroke-width="2.2" viewBox="0 0 24 24" style="transition:transform 0.25s ease;"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div id="sidebar-filter-body" style="padding:0 20px;max-height:0;overflow:hidden;transition:max-height 0.3s ease, padding 0.3s ease;"></div>
+        <div id="sidebar-reset-wrap" style="display:none;padding:0 20px 16px;">
           <button id="reset-filters" style="font-size:0.75rem;color:#2695c8;background:none;border:none;cursor:pointer;padding:2px 6px;border-radius:4px;transition:background 0.15s;" onmouseover="this.style.background='#e8f4fb'" onmouseout="this.style.background='none'">Reset</button>
         </div>
-        <div id="sidebar-filter-body" style="padding:20px;"></div>
       </div>
     </aside>`;
 }
@@ -110,6 +118,29 @@ export function initFilterSidebar({ onChange } = {}) {
     renderFilterPanels();
     onChange?.();
   };
+
+  // Sidebar collapse toggle
+  const toggle = document.getElementById('sidebar-toggle');
+  const body = document.getElementById('sidebar-filter-body');
+  const chevron = document.getElementById('sidebar-chevron');
+  const resetWrap = document.getElementById('sidebar-reset-wrap');
+  let sidebarOpen = false;
+
+  toggle?.addEventListener('click', () => {
+    sidebarOpen = !sidebarOpen;
+    if (sidebarOpen) {
+      renderFilterPanels();
+      body.style.maxHeight = body.scrollHeight + 200 + 'px';
+      body.style.padding = '20px 20px 12px';
+      chevron.style.transform = 'rotate(180deg)';
+      if (resetWrap) resetWrap.style.display = 'block';
+    } else {
+      body.style.maxHeight = '0';
+      body.style.padding = '0 20px';
+      chevron.style.transform = 'rotate(0deg)';
+      if (resetWrap) resetWrap.style.display = 'none';
+    }
+  });
 
   document.getElementById('filter-scrim')?.addEventListener('click', closeFilterSheet);
   document.getElementById('filter-close')?.addEventListener('click', closeFilterSheet);

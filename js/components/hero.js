@@ -44,15 +44,13 @@ export function HeroHTML(heroVideo = "docs/videoplayback_fgds.mp4") {
 
       </div>
 
-      <div class="scroll-cue" style="position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;color:rgba(255,255,255,0.25);">
+      <div class="scroll-cue" style="position:absolute;bottom:18px;left:60%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;color:rgba(255,255,255,0.25);">
         <span style="font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;">Scroll</span>
         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
       </div>
     </section>
 
-    <div style="background:#111;padding:20px 24px;border-top:1px solid rgba(255,255,255,0.06);">
-      <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:32px 48px;">
-      </div>
+    
     </div>`;
 }
 
@@ -62,10 +60,10 @@ export function initHero() {
     document.getElementById("hero-inner")?.classList.add("hero-revealed");
   }, 2000);
 
-  const video    = document.getElementById("hero-video");
-  const muteBtn  = document.getElementById("muteBtn");
+  const video = document.getElementById("hero-video");
+  const muteBtn = document.getElementById("muteBtn");
   const muteIcon = document.getElementById("muteIcon");
-  const playBtn  = document.getElementById("playBtn");
+  const playBtn = document.getElementById("playBtn");
   const playIcon = document.getElementById("playIcon");
 
   if (muteBtn && video) {
@@ -79,12 +77,23 @@ export function initHero() {
   }
 
   if (playBtn && video) {
-    const setPlayIcon  = () => { playIcon.innerHTML = `<polygon points="5 3 19 12 5 21 5 3"/>`; playBtn.setAttribute("aria-label", "Play"); };
-    const setPauseIcon = () => { playIcon.innerHTML = `<rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/>`; playBtn.setAttribute("aria-label", "Pause"); };
+    const setPlayIcon = () => {
+      playIcon.innerHTML = `<polygon points="5 3 19 12 5 21 5 3"/>`;
+      playBtn.setAttribute("aria-label", "Play");
+    };
+    const setPauseIcon = () => {
+      playIcon.innerHTML = `<rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/>`;
+      playBtn.setAttribute("aria-label", "Pause");
+    };
 
     playBtn.addEventListener("click", () => {
-      if (video.paused) { video.play(); setPauseIcon(); }
-      else              { video.pause(); setPlayIcon(); }
+      if (video.paused) {
+        video.play();
+        setPauseIcon();
+      } else {
+        video.pause();
+        setPlayIcon();
+      }
     });
 
     video.addEventListener("ended", setPlayIcon);
