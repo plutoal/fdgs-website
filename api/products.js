@@ -68,6 +68,7 @@ module.exports = async function handler(req, res) {
           nodes { id quantityAvailable price { amount } compareAtPrice { amount } }
         }
         metafield(namespace: "custom", key: "specs") { value }
+        metafields(first: 20) { nodes { namespace key value type } }
       }
     }
     metaobjects(type: "site_assets", first: 1) {
@@ -111,9 +112,10 @@ module.exports = async function handler(req, res) {
         type: p.productType || "OHD Kits",
         price,
         compareAt,
-        stock: v.quantityAvailable ?? 99,
         desc: p.description,
         specs,
+        _debug_metafield: p.metafield,
+        _debug_metafields: p.metafields?.nodes || [],
         img:
           p.images.nodes[0]?.url ||
           `https://placehold.co/480x320/dbeafe/1d4ed8?text=${encodeURIComponent(p.title)}`,
