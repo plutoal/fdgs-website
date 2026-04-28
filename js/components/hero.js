@@ -34,6 +34,9 @@ export function HeroHTML(heroVideo = "docs/videoplayback_fgds.mp4") {
                  style="width:100%;height:100%;object-fit:cover;border-radius:20px;display:block;">
             <source src="${heroVideo}" type="video/mp4">
           </video>
+          <button id="playBtn" style="position:absolute;bottom:12px;left:12px;z-index:10;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,0.45);border:1px solid rgba(255,255,255,0.2);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);transition:background 0.15s;" onmouseover="this.style.background='rgba(0,0,0,0.7)'" onmouseout="this.style.background='rgba(0,0,0,0.45)'" aria-label="Play/Pause">
+            <svg id="playIcon" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
+          </button>
           <button id="muteBtn" style="position:absolute;bottom:12px;right:12px;z-index:10;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,0.45);border:1px solid rgba(255,255,255,0.2);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);transition:background 0.15s;" onmouseover="this.style.background='rgba(0,0,0,0.7)'" onmouseout="this.style.background='rgba(0,0,0,0.45)'" aria-label="Toggle mute">
             <svg id="muteIcon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/></svg>
           </button>
@@ -59,17 +62,32 @@ export function initHero() {
     document.getElementById("hero-inner")?.classList.add("hero-revealed");
   }, 2000);
 
-  const video = document.getElementById("hero-video");
-  const btn = document.getElementById("muteBtn");
-  const icon = document.getElementById("muteIcon");
-  if (btn && video) {
-    btn.addEventListener("click", () => {
+  const video    = document.getElementById("hero-video");
+  const muteBtn  = document.getElementById("muteBtn");
+  const muteIcon = document.getElementById("muteIcon");
+  const playBtn  = document.getElementById("playBtn");
+  const playIcon = document.getElementById("playIcon");
+
+  if (muteBtn && video) {
+    muteBtn.addEventListener("click", () => {
       video.muted = !video.muted;
-      icon.innerHTML = video.muted
+      muteIcon.innerHTML = video.muted
         ? `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>`
         : `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/>`;
-      btn.setAttribute("aria-label", video.muted ? "Unmute" : "Mute");
+      muteBtn.setAttribute("aria-label", video.muted ? "Unmute" : "Mute");
     });
+  }
+
+  if (playBtn && video) {
+    const setPlayIcon  = () => { playIcon.innerHTML = `<polygon points="5 3 19 12 5 21 5 3"/>`; playBtn.setAttribute("aria-label", "Play"); };
+    const setPauseIcon = () => { playIcon.innerHTML = `<rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/>`; playBtn.setAttribute("aria-label", "Pause"); };
+
+    playBtn.addEventListener("click", () => {
+      if (video.paused) { video.play(); setPauseIcon(); }
+      else              { video.pause(); setPlayIcon(); }
+    });
+
+    video.addEventListener("ended", setPlayIcon);
   }
 }
 
