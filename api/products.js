@@ -99,12 +99,7 @@ module.exports = async function handler(req, res) {
             p.compareAtPriceRange.minVariantPrice.amount,
         ) || null;
       const compareAt = compareRaw && compareRaw !== price ? compareRaw : null;
-      let specs = {};
-      if (p.metafield?.value) {
-        try {
-          specs = JSON.parse(p.metafield.value);
-        } catch {}
-      }
+      const specs = p.metafield?.value || null;
       return {
         id: i + 1,
         shopifyId: p.id,
@@ -116,7 +111,6 @@ module.exports = async function handler(req, res) {
         compareAt,
         desc: p.description,
         specs,
-        _debug_metafield: p.metafield,
         img:
           p.images.nodes[0]?.url ||
           `https://placehold.co/480x320/dbeafe/1d4ed8?text=${encodeURIComponent(p.title)}`,
