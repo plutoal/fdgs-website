@@ -3,13 +3,18 @@ import { showToast } from "../toast.js";
 import { HeaderHTML, updateBadge, initHeader } from "../components/header.js";
 import { FooterHTML } from "../components/footer.js";
 import {
-  CartDrawerHTML, refreshCartDrawer, openCartDrawer,
-  closeCartDrawer, initCartDrawer,
+  CartDrawerHTML,
+  refreshCartDrawer,
+  openCartDrawer,
+  closeCartDrawer,
+  initCartDrawer,
 } from "../components/cartDrawer.js";
 import { PRODUCTS } from "../data.js";
 
 document.getElementById("cart-root").innerHTML = CartDrawerHTML();
-document.getElementById("header-root").innerHTML = HeaderHTML({ logoHref: "index.html" });
+document.getElementById("header-root").innerHTML = HeaderHTML({
+  logoHref: "index.html",
+});
 document.getElementById("footer-root").innerHTML = FooterHTML();
 document.title = "FAQ — Frozen Garage Door Solutions";
 
@@ -35,12 +40,8 @@ const FAQS = [
     a: "We stock all lengths of heated cable for our product.",
   },
   {
-    q: "How much elevation does the angle steel add once installed?",
+    q: "How much elevation does the bracket add once installed?",
     a: "Once installed the angle steel will add 1/2 inch of height to your concrete floor. A minor adjustment may be required to the down travel of your door.",
-  },
-  {
-    q: "Why is the Aluminum kit more expensive?",
-    a: "The Aluminum kit will last you for a very long time as it will not rust even if the paint eventually gets worn out due to tire traffic.",
   },
   {
     q: "What if the heated wire that is provided is not long enough?",
@@ -51,8 +52,16 @@ const FAQS = [
     a: "Yes, proper installation requires the concrete floor under the angle steel/aluminum to be level. Ready mix concrete can be used to level off slight imperfections.",
   },
   {
-    q: "What if I don't want the angle steel/aluminium protruding from the concrete floor?",
-    a: "Our patent pending covers many variations to the type of materials used, the way to fasten the product to the floor, as well as options to bury it into the concrete.",
+    q: "What is the power supply required for the Heat Trace Cable?",
+    a: "A Standard 120 volt outlet (comes with inline Ground Fault Interrupter cord)",
+  },
+  {
+    q: "What is the  inline Ground Fault Interrupter cord?",
+    a: "Global Electrical Codes require ground-fault protection of components and each heating cable branch circuit to reduce the danger of fire caused by continuous electrical arcing resulting from improper installation or damage to the heating cable.",
+  },
+  {
+    q: "How many watts per foot does the cable create?",
+    a: "5 Watt/ft. in ice/snow.",
   },
 ];
 
@@ -91,7 +100,8 @@ document.getElementById("main-root").innerHTML = `
 const list = document.getElementById("faq-list");
 FAQS.forEach((item, i) => {
   const el = document.createElement("div");
-  el.style.cssText = "border-radius:14px;border:1px solid rgba(0,0,0,0.08);background:#fff;overflow:hidden;transition:box-shadow 0.15s;";
+  el.style.cssText =
+    "border-radius:14px;border:1px solid rgba(0,0,0,0.08);background:#fff;overflow:hidden;transition:box-shadow 0.15s;";
 
   el.innerHTML = `
     <button aria-expanded="false" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 22px;background:transparent;border:none;cursor:pointer;text-align:left;font-family:'Inter',sans-serif;">
@@ -109,10 +119,11 @@ FAQS.forEach((item, i) => {
   btn.addEventListener("click", () => {
     const isOpen = btn.getAttribute("aria-expanded") === "true";
     // Close all others
-    list.querySelectorAll("button[aria-expanded='true']").forEach(b => {
+    list.querySelectorAll("button[aria-expanded='true']").forEach((b) => {
       b.setAttribute("aria-expanded", "false");
       b.closest("div").querySelector(".faq-body").style.maxHeight = "0";
-      b.closest("div").querySelector(".faq-chevron").style.transform = "rotate(0deg)";
+      b.closest("div").querySelector(".faq-chevron").style.transform =
+        "rotate(0deg)";
     });
     if (!isOpen) {
       btn.setAttribute("aria-expanded", "true");
@@ -135,7 +146,9 @@ initHeader({
 });
 initCartDrawer({
   products: PRODUCTS,
-  onCheckout() { showToast("Redirecting to checkout…"); },
+  onCheckout() {
+    showToast("Redirecting to checkout…");
+  },
 });
 Cart.onChange(() => {
   updateBadge();
@@ -143,5 +156,7 @@ Cart.onChange(() => {
     refreshCartDrawer(PRODUCTS);
   }
 });
-document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeCartDrawer(); });
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeCartDrawer();
+});
 updateBadge();

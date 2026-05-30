@@ -14,7 +14,7 @@
   --base:       #f8f8f8;
   --surface:    #ffffff;
   --hdr:        72px;
-  --banner:     36px;
+  --banner:     42px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -41,7 +41,7 @@ body { background: var(--base); color: var(--ink); font-family: 'Inter', sans-se
 /* ── PROMO BANNER ── */
 #promo-banner {
   height: var(--banner);
-  background: var(--brand-dark);
+  background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -57,10 +57,11 @@ body { background: var(--base); color: var(--ink); font-family: 'Inter', sans-se
   display: flex;
   align-items: center;
   gap: 7px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: rgba(255,255,255,0.9);
-  letter-spacing: 0.02em;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #2695c8;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.4s ease, transform 0.4s ease;
@@ -200,8 +201,8 @@ body { background: var(--base); color: var(--ink); font-family: 'Inter', sans-se
   justify-self: center;
 }
 .hero-h1 {
-  letter-spacing: -0.03em; line-height: 0.95; color: #fff; margin-bottom: 28px;
-  transition: font-size 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: -0.02em; line-height: 0.95; color: #fff; margin-bottom: 28px;
+  transition: font-size 0.1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .hero-cta-row {
   display: flex; flex-wrap: wrap; align-items: center;

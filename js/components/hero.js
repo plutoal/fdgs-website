@@ -9,16 +9,23 @@ export function HeroHTML(heroVideo = "docs/videoplayback_fgds.mp4") {
 
         <!-- ── Text column ── -->
         <div class="hero-text-col">
-          <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255, 255, 255, 0.8);
-                      border:1px solid rgba(255,255,255,0.11);border-radius:100px;padding:6px 16px;
-                      margin-bottom:32px;font-size:0.8rem;color:rgb(11, 11, 11);">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2695c8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 4v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-            Free Canada-wide Shipping
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:32px;font-size:1rem;">
+            <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.8);
+                        border:1px solid rgba(255,255,255,0.11);border-radius:100px;padding:6px 16px;
+                        font-size:0.8rem;color:rgb(11,11,11); margin-bottom:12px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2695c8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 4v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+              Free Canada-wide Shipping
+            </div>
           </div>
 
-          <h1 class="hero-h1 font-display font-black">
+          <h1 class="hero-h1 font-display font-black" style="color:#2695c8;">
             <span> No More Frozen<br></span>
-            <span style="color:#2695c8;">Garage Doors</span>
+            <span>Garage Doors</span>
+          </h1>
+
+          <h1 class="hero-h1 font-display font-black">
+            <span>Keep Your Garage<br></span>
+            <span>Dry And Rust Free</span>
           </h1>
 
           <div class="hero-cta-row">
@@ -58,7 +65,7 @@ export function initHero() {
   initParticles();
   setTimeout(() => {
     document.getElementById("hero-inner")?.classList.add("hero-revealed");
-  }, 2000);
+  }, 3500);
 
   const video = document.getElementById("hero-video");
   const muteBtn = document.getElementById("muteBtn");
