@@ -22,6 +22,42 @@ document.getElementById("header-root").innerHTML = HeaderHTML({
 });
 document.getElementById("footer-root").innerHTML = FooterHTML();
 
+// ── SEO META ─────────────────────────────────────────────
+function injectProductMeta(p) {
+  const base = 'https://frozengaragedoorsolutions.com';
+  const url = `${base}/product.html?id=${p.id}`;
+  const img = p.img.startsWith('http') ? p.img : `${base}/${p.img}`;
+  const avail = p.stock > 0 ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock';
+  const setMeta = (sel, val) => { const el = document.querySelector(sel); if (el) el.setAttribute('content', val); };
+  document.querySelector('link[rel="canonical"]')?.setAttribute('href', url);
+  setMeta('meta[property="og:title"]',        `${p.name} — Frozen Garage Door Solutions`);
+  setMeta('meta[property="og:description"]',  p.desc);
+  setMeta('meta[property="og:url"]',          url);
+  setMeta('meta[property="og:image"]',        img);
+  setMeta('meta[name="twitter:title"]',       `${p.name} — Frozen Garage Door Solutions`);
+  setMeta('meta[name="twitter:description"]', p.desc);
+  setMeta('meta[name="twitter:image"]',       img);
+  const s = document.createElement('script');
+  s.type = 'application/ld+json';
+  s.textContent = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: p.name,
+    description: p.desc,
+    image: img,
+    brand: { '@type': 'Brand', name: 'OHD' },
+    offers: {
+      '@type': 'Offer',
+      url,
+      priceCurrency: 'CAD',
+      price: p.price.toFixed(2),
+      availability: avail,
+      seller: { '@type': 'Organization', name: 'Frozen Garage Door Solutions' },
+    },
+  });
+  document.head.appendChild(s);
+}
+
 (async () => {
   // ── LOAD PRODUCT ─────────────────────────────────────────
   await loadProducts();
@@ -38,6 +74,7 @@ document.getElementById("footer-root").innerHTML = FooterHTML();
     document.title = "Not Found — FDGS";
   } else {
     document.title = `${p.name} — FDGS Garage Parts`;
+    injectProductMeta(p);
 
     const isLow = p.stock > 0 && p.stock <= 5;
     const isOut = false; // STOCK CHECK DISABLED — restore: p.stock === 0

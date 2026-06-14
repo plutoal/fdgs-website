@@ -3,7 +3,7 @@ import { redirectToCheckout } from "../checkout.js";
 import { Cart } from "../cart.js";
 import { showToast } from "../toast.js";
 import { HeaderHTML, updateBadge, initHeader } from "../components/header.js";
-import { HeroHTML, initHero } from "../components/hero.js";
+import { HeroHTML, initHero, fetchHeroVideo } from "../components/hero.js";
 import { FooterHTML } from "../components/footer.js";
 import {
   CartDrawerHTML,
@@ -219,11 +219,15 @@ initFilterSidebar({ onChange: onFilterChange });
 
 (async () => {
   await loadProducts();
-  // Re-render hero with Shopify-hosted video URL if available
-  const heroVideo = getHeroVideo();
+  // Swap video src in-place once Shopify URL resolves — no full hero re-render
+  const heroVideo = await fetchHeroVideo() ?? getHeroVideo();
   if (heroVideo) {
-    document.getElementById("hero-root").innerHTML = HeroHTML(heroVideo);
-    initHero();
+    const video = document.getElementById('hero-video');
+    if (video) {
+      video.src = heroVideo;
+      video.load();
+      video.play().catch(() => {});
+    }
   }
   initCartDrawer({
     products: getProducts(),

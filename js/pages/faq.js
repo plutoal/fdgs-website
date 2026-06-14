@@ -65,6 +65,43 @@ const FAQS = [
   },
 ];
 
+// ── SHOPIFY FAQ FETCH ────────────────────────────────────
+async function fetchShopifyFAQs() {
+  const store = document.querySelector('shopify-store');
+  if (!store) return null;
+  const domain = store.getAttribute('store-domain');
+  const token  = store.getAttribute('public-access-token');
+  if (!domain || !token) return null;
+  try {
+    const res = await fetch(`${domain}/api/2025-01/graphql.json`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Shopify-Storefront-Access-Token': token,
+      },
+      body: JSON.stringify({ query: `{
+        metaobjects(type: "faqs", first: 50) {
+          nodes {
+            fields { key value }
+          }
+        }
+      }` }),
+    });
+    const { data } = await res.json();
+    const nodes = data?.metaobjects?.nodes ?? [];
+    if (!nodes.length) return null;
+    return nodes.map(node => {
+      const get = key => {
+        const raw = node.fields.find(f => f.key === key)?.value ?? '';
+        return raw.replace(/^[qa]:\s*/i, '').trim();
+      };
+      return { q: get('question'), a: get('answer') };
+    }).filter(item => item.q && item.a);
+  } catch {
+    return null;
+  }
+}
+
 document.getElementById("main-root").innerHTML = `
   <div style="max-width:760px;margin:0 auto;padding:24px 24px 96px;">
 
@@ -97,13 +134,15 @@ document.getElementById("main-root").innerHTML = `
   </div>`;
 
 // Render accordion items
-const list = document.getElementById("faq-list");
-FAQS.forEach((item, i) => {
-  const el = document.createElement("div");
-  el.style.cssText =
-    "border-radius:14px;border:1px solid rgba(0,0,0,0.08);background:#fff;overflow:hidden;transition:box-shadow 0.15s;";
+function renderFAQs(faqs) {
+  const list = document.getElementById("faq-list");
+  list.innerHTML = '';
+  faqs.forEach((item) => {
+    const el = document.createElement("div");
+    el.style.cssText =
+      "border-radius:14px;border:1px solid rgba(0,0,0,0.08);background:#fff;overflow:hidden;transition:box-shadow 0.15s;";
 
-  el.innerHTML = `
+    el.innerHTML = `
     <button aria-expanded="false" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 22px;background:transparent;border:none;cursor:pointer;text-align:left;font-family:'Inter',sans-serif;">
       <span style="font-size:0.95rem;font-weight:600;color:#1a1a1a;line-height:1.4;">${item.q}</span>
       <svg class="faq-chevron" width="18" height="18" fill="none" stroke="#6b7280" stroke-width="2.2" viewBox="0 0 24 24" style="flex-shrink:0;transition:transform 0.25s ease;"><path d="M6 9l6 6 6-6"/></svg>
@@ -112,30 +151,36 @@ FAQS.forEach((item, i) => {
       <p style="padding:0 22px 20px;font-size:0.88rem;color:#4b5563;line-height:1.75;border-top:1px solid rgba(0,0,0,0.06);padding-top:16px;margin-top:0;">${item.a}</p>
     </div>`;
 
-  const btn = el.querySelector("button");
-  const body = el.querySelector(".faq-body");
-  const chevron = el.querySelector(".faq-chevron");
+    const btn = el.querySelector("button");
+    const body = el.querySelector(".faq-body");
+    const chevron = el.querySelector(".faq-chevron");
 
-  btn.addEventListener("click", () => {
-    const isOpen = btn.getAttribute("aria-expanded") === "true";
-    // Close all others
-    list.querySelectorAll("button[aria-expanded='true']").forEach((b) => {
-      b.setAttribute("aria-expanded", "false");
-      b.closest("div").querySelector(".faq-body").style.maxHeight = "0";
-      b.closest("div").querySelector(".faq-chevron").style.transform =
-        "rotate(0deg)";
+    btn.addEventListener("click", () => {
+      const isOpen = btn.getAttribute("aria-expanded") === "true";
+      list.querySelectorAll("button[aria-expanded='true']").forEach((b) => {
+        b.setAttribute("aria-expanded", "false");
+        b.closest("div").querySelector(".faq-body").style.maxHeight = "0";
+        b.closest("div").querySelector(".faq-chevron").style.transform = "rotate(0deg)";
+      });
+      if (!isOpen) {
+        btn.setAttribute("aria-expanded", "true");
+        body.style.maxHeight = body.scrollHeight + "px";
+        chevron.style.transform = "rotate(180deg)";
+        el.style.boxShadow = "0 4px 16px rgba(0,0,0,0.08)";
+      } else {
+        el.style.boxShadow = "none";
+      }
     });
-    if (!isOpen) {
-      btn.setAttribute("aria-expanded", "true");
-      body.style.maxHeight = body.scrollHeight + "px";
-      chevron.style.transform = "rotate(180deg)";
-      el.style.boxShadow = "0 4px 16px rgba(0,0,0,0.08)";
-    } else {
-      el.style.boxShadow = "none";
-    }
-  });
 
-  list.appendChild(el);
+    list.appendChild(el);
+  });
+}
+
+renderFAQs(FAQS);
+
+// Swap in Shopify FAQs if available
+fetchShopifyFAQs().then(shopifyFAQs => {
+  if (shopifyFAQs) renderFAQs(shopifyFAQs);
 });
 
 initHeader({

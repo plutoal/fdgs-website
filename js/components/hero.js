@@ -1,4 +1,4 @@
-export function HeroHTML(heroVideo = "docs/videoplayback_fgds.mp4") {
+export function HeroHTML(heroVideo = null) {
   return `
     <section id="hero">
       <div class="hero-grid"></div>
@@ -39,7 +39,7 @@ export function HeroHTML(heroVideo = "docs/videoplayback_fgds.mp4") {
         <div class="hero-video-col" id="hero-video-col" style="position:relative;">
           <video id="hero-video" autoplay muted playsinline
                  style="width:100%;height:100%;object-fit:cover;border-radius:20px;display:block;">
-            <source src="${heroVideo}" type="video/mp4">
+            ${heroVideo ? `<source src="${heroVideo}" type="video/mp4">` : ''}
           </video>
           <button id="playBtn" style="position:absolute;bottom:12px;left:12px;z-index:10;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,0.45);border:1px solid rgba(255,255,255,0.2);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);transition:background 0.15s;" onmouseover="this.style.background='rgba(0,0,0,0.7)'" onmouseout="this.style.background='rgba(0,0,0,0.45)'" aria-label="Play/Pause">
             <svg id="playIcon" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
@@ -104,6 +104,55 @@ export function initHero() {
     });
 
     video.addEventListener("ended", setPlayIcon);
+  }
+}
+
+// ── SHOPIFY HERO VIDEO ────────────────────────────────────
+// Reads credentials from the <shopify-store> web component in the DOM and
+// queries the Storefront API for a metaobject of type "hero_settings"
+// (handle: "default", field key: "video").
+// Set up in Shopify Admin → Content → Metaobjects before using this.
+export async function fetchHeroVideo() {
+  const store = document.querySelector("shopify-store");
+  if (!store) return null;
+  const domain = store.getAttribute("store-domain");
+  const token = store.getAttribute("public-access-token");
+  if (!domain || !token) return null;
+  try {
+    const res = await fetch(`${domain}/api/2025-01/graphql.json`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Shopify-Storefront-Access-Token": token,
+      },
+      body: JSON.stringify({
+        query: `{
+        metaobjects(type: "custom_hero_vid", first: 1) {
+          nodes {
+            fields {
+              key
+              reference {
+                ... on Video {
+                  sources { url mimeType }
+                }
+              }
+            }
+          }
+        }
+      }`,
+      }),
+    });
+    const { data } = await res.json();
+    const fields = data?.metaobjects?.nodes?.[0]?.fields ?? [];
+    const sources =
+      fields.find((f) => f.key === "hero_vid")?.reference?.sources ?? [];
+    return (
+      sources.find((s) => s.mimeType === "video/mp4")?.url ??
+      sources[0]?.url ??
+      null
+    );
+  } catch {
+    return null;
   }
 }
 
