@@ -41,7 +41,7 @@ body { background: var(--base); color: var(--ink); font-family: 'Inter', sans-se
 /* ── PROMO BANNER ── */
 #promo-banner {
   height: var(--banner);
-  background: #ffffff;
+  background: #00f0ff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -58,8 +58,8 @@ body { background: var(--base); color: var(--ink); font-family: 'Inter', sans-se
   align-items: center;
   gap: 7px;
   font-size: 0.82rem;
-  font-weight: 800;
-  color: #2695c8;
+  font-weight: 900;
+  color: #000000;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   opacity: 0;
@@ -74,6 +74,22 @@ body { background: var(--base); color: var(--ink); font-family: 'Inter', sans-se
   pointer-events: auto;
 }
 .promo-icon { display: flex; align-items: center; opacity: 0.8; }
+
+.pulse-text {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05); /* Expands slightly */
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 
 /* ── HEADER ── */
 #hdr {

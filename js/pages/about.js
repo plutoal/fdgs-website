@@ -61,25 +61,6 @@ document.getElementById("main-root").innerHTML = `
       <p style="font-size:1rem;color:rgba(255,255,255,0.6);max-width:580px;margin:0 auto 24px;line-height:1.7;">
         Frozen Garage Door Solutions was born out of a cold Canadian winter and a door that wouldn't budge. We built the fix ourselves, and now we're sharing it.
       </p>
-      <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:32px;">
-        ${[
-          [
-            "Self Draining Tracks",
-            `<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/><path d="M5 19c2-4 10-4 14 0"/></svg>`,
-          ],
-          [
-            "DIY Install",
-            `<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>`,
-          ],
-        ]
-          .map(
-            ([label, icon]) => `
-          <span style="display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:999px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);font-size:0.78rem;font-weight:600;color:rgba(255,255,255,0.85);letter-spacing:0.03em;">
-            <span style="color:#2695c8;">${icon}</span>${label}
-          </span>`,
-          )
-          .join("")}
-      </div>
       <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center;">
         ${btn("Shop the Kit", "index.html#catalog")}
         <a href="faq.html" style="display:inline-flex;align-items:center;gap:8px;padding:13px 28px;font-size:0.95rem;font-weight:600;border-radius:12px;border:1px solid rgba(255,255,255,0.2);color:#fff;text-decoration:none;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='transparent'">

@@ -41,7 +41,7 @@ const FAQS = [
   },
   {
     q: "How much elevation does the bracket add once installed?",
-    a: "Once installed the angle steel will add 1/2 inch of height to your concrete floor. A minor adjustment may be required to the down travel of your door.",
+    a: "Once installed the aluminum bracket will add 1/2 inch of height to your concrete floor. A minor adjustment may be required to the down travel of your door.",
   },
   {
     q: "What if the heated wire that is provided is not long enough?",
@@ -49,7 +49,7 @@ const FAQS = [
   },
   {
     q: "Does the concrete floor need to be level?",
-    a: "Yes, proper installation requires the concrete floor under the angle steel/aluminum to be level. Ready mix concrete can be used to level off slight imperfections.",
+    a: "Yes, proper installation requires the concrete floor under the aluminum bracket to be level. Ready mix concrete can be used to level off slight imperfections.",
   },
   {
     q: "What is the power supply required for the Heat Trace Cable?",
@@ -67,36 +67,40 @@ const FAQS = [
 
 // ── SHOPIFY FAQ FETCH ────────────────────────────────────
 async function fetchShopifyFAQs() {
-  const store = document.querySelector('shopify-store');
+  const store = document.querySelector("shopify-store");
   if (!store) return null;
-  const domain = store.getAttribute('store-domain');
-  const token  = store.getAttribute('public-access-token');
+  const domain = store.getAttribute("store-domain");
+  const token = store.getAttribute("public-access-token");
   if (!domain || !token) return null;
   try {
     const res = await fetch(`${domain}/api/2025-01/graphql.json`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'X-Shopify-Storefront-Access-Token': token,
+        "Content-Type": "application/json",
+        "X-Shopify-Storefront-Access-Token": token,
       },
-      body: JSON.stringify({ query: `{
+      body: JSON.stringify({
+        query: `{
         metaobjects(type: "faqs", first: 50) {
           nodes {
             fields { key value }
           }
         }
-      }` }),
+      }`,
+      }),
     });
     const { data } = await res.json();
     const nodes = data?.metaobjects?.nodes ?? [];
     if (!nodes.length) return null;
-    return nodes.map(node => {
-      const get = key => {
-        const raw = node.fields.find(f => f.key === key)?.value ?? '';
-        return raw.replace(/^[qa]:\s*/i, '').trim();
-      };
-      return { q: get('question'), a: get('answer') };
-    }).filter(item => item.q && item.a);
+    return nodes
+      .map((node) => {
+        const get = (key) => {
+          const raw = node.fields.find((f) => f.key === key)?.value ?? "";
+          return raw.replace(/^[qa]:\s*/i, "").trim();
+        };
+        return { q: get("question"), a: get("answer") };
+      })
+      .filter((item) => item.q && item.a);
   } catch {
     return null;
   }
@@ -136,7 +140,7 @@ document.getElementById("main-root").innerHTML = `
 // Render accordion items
 function renderFAQs(faqs) {
   const list = document.getElementById("faq-list");
-  list.innerHTML = '';
+  list.innerHTML = "";
   faqs.forEach((item) => {
     const el = document.createElement("div");
     el.style.cssText =
@@ -160,7 +164,8 @@ function renderFAQs(faqs) {
       list.querySelectorAll("button[aria-expanded='true']").forEach((b) => {
         b.setAttribute("aria-expanded", "false");
         b.closest("div").querySelector(".faq-body").style.maxHeight = "0";
-        b.closest("div").querySelector(".faq-chevron").style.transform = "rotate(0deg)";
+        b.closest("div").querySelector(".faq-chevron").style.transform =
+          "rotate(0deg)";
       });
       if (!isOpen) {
         btn.setAttribute("aria-expanded", "true");
@@ -179,7 +184,7 @@ function renderFAQs(faqs) {
 renderFAQs(FAQS);
 
 // Swap in Shopify FAQs if available
-fetchShopifyFAQs().then(shopifyFAQs => {
+fetchShopifyFAQs().then((shopifyFAQs) => {
   if (shopifyFAQs) renderFAQs(shopifyFAQs);
 });
 

@@ -98,7 +98,7 @@ export function HeaderHTML({
     <!-- Slide-in nav drawer -->
     <nav id="nav-drawer" aria-label="Site navigation">
       <div class="nav-drawer-header">
-        <a href="${logoHref}" style="background:rgba(255,255,255,0.96);border-radius:8px;padding:4px 10px;display:flex;align-items:center;" aria-label="Home">
+        <a href="${logoHref}" style="background:rgba(38, 207, 225, 0.96);border-radius:8px;padding:4px 10px;display:flex;align-items:center;" aria-label="Home">
           <img src="brand_assets/FrozenGarageDoors-fINAL-01.PNG" alt="FDGS" style="height:32px;width:auto;display:block;">
         </a>
         <button id="nav-close-btn" class="nav-close-btn" aria-label="Close menu">
